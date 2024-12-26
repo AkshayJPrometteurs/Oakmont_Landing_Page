@@ -18,9 +18,9 @@ const SupportedBookmarks = () => {
         cssEase: "linear"
     };
     return (
-        <Box sx={{ px : { xs : 8, md: 16 }, py : {xs : 5, md: 10 }, }} id="supported-bookmarks-section">
+        <Box sx={{ px : { xs : 8, md: 5 }, py : {xs : 5, md: 10 }, }} id="supported-bookmarks-section">
             <h1 className='text-3xl md:text-5xl uppercase tracking-wider leading-[1.3!important] text-center' style={{ fontFamily : theme.typography.secondaryFont }}>Supported Bookmarks</h1>
-            <div className="slider-container">
+            <div className="slider-container mt-10">
                 <Slider {...settings}>
                     <div>
                     <h3>1</h3>
