@@ -2,20 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'Base Runner';
+  src: url('/assets/fonts/BaseRunnerJNL.woff2') format('woff2'),
+    url('/assets/fonts/BaseRunnerJNL.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: 'Urbanist';
+  src: url('/assets/fonts/Urbanist-Regular.ttf') format('ttf');
+  font-weight: 400;
+  font-style: normal;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter.ttf') format('ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+html {
+  scroll-behavior: smooth;
 }
