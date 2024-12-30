@@ -1,79 +1,88 @@
 "use client";
-import { ArrowDropDown, ArrowDropUp, ArrowUpward, BarChart } from '@mui/icons-material';
-import { Avatar, Box, Divider, useTheme } from '@mui/material'
-import React from 'react'
+import React from "react";
+import { Avatar, Divider } from "@nextui-org/react";
+import SectionLayout from "../SectionLayout";
+import { Inter } from "next/font/google";
+import { FaArrowUp } from "react-icons/fa";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { IoBarChartSharp } from "react-icons/io5";
 
+const inter = Inter({ subsets: ['latin'] });
 const AITips = () => {
-    const theme = useTheme();
     return (
-        <Box sx={{ px : { xs : 8, md: 16 }, py : {xs : 5, md: 10 }, bgcolor: '#262626', color: '#fff' }} id='ai-tips-section'>
+        <SectionLayout id={"ai-tips-section"} headingText={"AI Tips"} bgcolor={"#262626"} color={"#fff"}>
             <section>
-                <div className='text-center'>
-                    <h1 className='text-3xl md:text-5xl uppercase tracking-wider leading-[1.3!important]' style={{ fontFamily : theme.typography.secondaryFont }}>AI Tips</h1>
-                    <p className='my-3' style={{ fontFamily : theme.typography.interFont }}>Our AI Tip Bot is your personal advantage in the world of sports betting. Designed to find the best value across sportsbooks, our powerful AI scans the market 24/7 to identify two types of premium betting opportunities:</p>
-                </div>
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-10 mt-16'>
+                <h1 className="my-3 text-center font-urbanist">
+                    Our AI Tip Bot is your personal advantage in the world of sports betting. Designed to find
+                    the best value across sportsbooks, our powerful AI scans the market 24/7 to identify two
+                    types of premium betting opportunities:
+                </h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
                     <div>
-                        <h1 className='text-xl md:text-2xl uppercase tracking-wider leading-[1.3!important]' style={{ fontFamily : theme.typography.secondaryFont }}>Positive Expected Value (+EV) Tips</h1>
-                        <p className='my-3' style={{ fontFamily : theme.typography.interFont }}>These tips are designed for long-term profitability. The AI hunts for bets where the odds offered by the sportsbook are higher than the actual likelihood of the outcome, giving you an edge over the house. With +EV tips, you’re not just betting, you’re investing in consistently profitable outcomes over time</p>
+                        <h1 className="uppercase tracking-wider font-base-runner text-xl md:text-2xl">Positive Expected Value (+EV) Tips</h1>
+                        <h1 className={`my-5 ${inter.className}`}>
+                            These tips are designed for long-term profitability. The AI hunts for bets where the
+                            odds offered by the sportsbook are higher than the actual likelihood of the outcome,
+                            giving you an edge over the house. With +EV tips, you’re not just betting, you’re
+                            investing in consistently profitable outcomes over time.
+                        </h1>
                     </div>
                     <div>
-                        <h1 className='text-xl md:text-2xl uppercase tracking-wider leading-[1.3!important]' style={{ fontFamily : theme.typography.secondaryFont }}>Arbitrage Tips (ARB): </h1>
-                        <p className='my-3' style={{ fontFamily : theme.typography.interFont }}>These are risk-free opportunities where the AI finds differing odds across sportsbooks, allowing you to cover all possible outcomes for a guaranteed profit. With Arbitrage tips, you don’t need luck—just a few clicks to secure steady, reliable returns.</p>
+                        <h1 className="uppercase tracking-wider font-base-runner text-xl md:text-2xl">Arbitrage Tips (ARB):</h1>
+                        <h1 className={`my-5 ${inter.className}`}>
+                            These are risk-free opportunities where the AI finds differing odds across
+                            sportsbooks, allowing you to cover all possible outcomes for a guaranteed profit.
+                            With Arbitrage tips, you don’t need luck—just a few clicks to secure steady, reliable
+                            returns.
+                        </h1>
                     </div>
                 </div>
-                <Box sx={{ bgcolor : '#333333', p : 4, mt : 6, borderRadius : 1.5 }}>
-                    <div className='flex flex-col md:flex-row gap-5'>
-                        <div className='flex-1'>
-                            <h1 className='text-xl md:text-3xl uppercase tracking-wider leading-[1.3!important]' style={{ fontFamily : theme.typography.secondaryFont }}>+EV</h1>
-                            <Box sx={{ border : '1px solid white', py: 2, px: 3, borderRadius : 1.5, mt : 3, display : 'flex', justifyContent : 'space-between', alignItems : 'center' }}>
-                                <div>
-                                    <h1 className='text-2xl' style={{ fontFamily: theme.typography.interFont }}>50</h1>
-                                    <p>Tips sent</p>
-                                </div>
-                                <Avatar sx={{ bgcolor: theme.palette.primary.main }}><ArrowUpward /></Avatar>
-                            </Box>
-                            <div className='grid grid-cols-2 items-center gap-10'>
-                                <Box sx={{ border : '1px solid white', py: 2, px: 3, borderRadius : 1.5, mt : 3 }}>
-                                    <div className='flex items-end'>
-                                        <h1 className='text-2xl' style={{ fontFamily: theme.typography.interFont }}>+40</h1>
-                                        <ArrowDropUp sx={{ color: '#00D95F', fontSize : '2rem', marginBottom : '-0.4rem', marginLeft : '-0.5rem' }}/>
+                <div>
+                    <div className={`flex flex-col md:flex-row gap-5 bg-[#333333] p-5 rounded-lg ${inter.className}`}>
+                        <div className="flex-1">
+                            <h1 className="uppercase tracking-wider font-base-runner text-2xl md:text-3xl mb-4">+EV</h1>
+                            <div className="border border-white px-5 py-3 rounded-xl flex items-center justify-between mb-6">
+                                <div><h1 className="text-2xl">50</h1><h1>Tips sent</h1></div>
+                                <div className="p-3 bg-primaryColor rounded-full"><FaArrowUp /></div>
+                            </div>
+                            <div className="grid grid-col-1 md:grid-cols-2 items-center gap-6 md:gap-8">
+                                <div className="border border-white px-5 py-3 rounded-xl">
+                                    <div className="flex items-end">
+                                        <h1 className="text-2xl">+40</h1>
+                                        <IoMdArrowDropup color="#00D95F" size={'2rem'} className="-ml-1.5 -mb-1.5"/>
                                     </div>
-                                    <p>Units Win</p>
-                                </Box>
-                                <Box sx={{ border : '1px solid white', py: 2, px: 3, borderRadius : 1.5, mt : 3 }}>
-                                    <h1 className='text-2xl' style={{ fontFamily: theme.typography.interFont }}>90%</h1>
-                                    <p>Win Percentage</p>
-                                </Box>
+                                    <h1>Units Win</h1>
+                                </div>
+                                <div className="border border-white px-5 py-3 rounded-xl">
+                                    <h1 className="text-2xl">90%</h1>
+                                    <h1>Win Percentage</h1>
+                                </div>
                             </div>
                         </div>
-                        <Divider orientation="vertical" sx={{ borderColor : '#525252', display : { xs: 'none', md: 'block'} }} flexItem />
-                        <Divider orientation="horizontal" sx={{ borderColor : '#525252', display : { xs: 'block', md: 'none'} }} flexItem />
-                        <div className='flex-1'>
-                            <h1 className='text-xl md:text-3xl uppercase tracking-wider leading-[1.3!important]' style={{ fontFamily : theme.typography.secondaryFont }}>ARB</h1>
-                            <Box sx={{ border : '1px solid white', py: 2, px: 3, borderRadius : 1.5, mt : 3, display : 'flex', justifyContent : 'space-between', alignItems : 'center' }}>
+                        <Divider className="bg-[#525252] border h-auto block md:hidden"/>
+                        <Divider className="bg-[#525252] border h-auto hidden md:block" orientation="vertical"/>
+                        <div className="flex-1">
+                            <h1 className="uppercase tracking-wider font-base-runner text-2xl md:text-3xl mb-4">ARB</h1>
+                            <div className="border border-white px-5 py-3 rounded-xl flex items-center justify-between mb-6">
+                                <div><h1 className="text-2xl">60</h1><h1>Tips sent</h1></div>
+                                <div className="p-3 bg-primaryColor rounded-full"><FaArrowUp /></div>
+                            </div>
+                            <div className="border border-white px-5 py-3 rounded-xl flex items-center justify-between mb-6">
                                 <div>
-                                    <h1 className='text-2xl' style={{ fontFamily: theme.typography.interFont }}>60</h1>
-                                    <p>Tips sent</p>
-                                </div>
-                                <Avatar sx={{ bgcolor: theme.palette.primary.main }}><ArrowUpward /></Avatar>
-                            </Box>
-                            <Box sx={{ border : '1px solid white', py: 2, px: 3, borderRadius : 1.5, mt : 3, display : 'flex', justifyContent : 'space-between', alignItems : 'center' }}>
-                                <div>
-                                    <div className='flex items-end'>
-                                        <h1 className='text-2xl' style={{ fontFamily: theme.typography.interFont }}>-40</h1>
-                                        <ArrowDropDown sx={{ color: '#FE3434', fontSize : '2rem', marginBottom : '-0.4rem', marginLeft : '-0.5rem' }}/>
+                                    <div className="flex items-end">
+                                        <h1 className="text-2xl">-40</h1>
+                                        <IoMdArrowDropdown color="#00D95F" size={'2rem'} className="-ml-1.5 -mb-1.5"/>
                                     </div>
-                                    <p>Units Loss</p>
+                                    <h1>Units Win</h1>
                                 </div>
-                                <Avatar sx={{ bgcolor: theme.palette.primary.main }}><BarChart /></Avatar>
-                            </Box>
+                                <div className="p-3 bg-primaryColor rounded-full"><IoBarChartSharp /></div>
+                            </div>
                         </div>
                     </div>
-                </Box>
+                </div>
             </section>
-        </Box>
-    )
-}
+        </SectionLayout>
+    );
+};
 
-export default AITips
+export default AITips;
