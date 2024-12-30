@@ -3,27 +3,14 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Base Runner';
-  src: url('/assets/fonts/BaseRunnerJNL.woff2') format('woff2'),
-    url('/assets/fonts/BaseRunnerJNL.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Base Runner";
+    src: url("/assets/fonts/BaseRunnerJNL.woff2") format("woff2"), url("/assets/fonts/BaseRunnerJNL.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'Urbanist';
-  src: url('/assets/fonts/Urbanist-Regular.ttf') format('ttf');
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Urbanist";
+    src: url("/assets/fonts/Urbanist-Regular.ttf") format("truetype");
 }
 
-@font-face {
-  font-family: 'Inter';
-  src: url('/assets/fonts/Inter.ttf') format('ttf');
-  font-weight: 400;
-  font-style: normal;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
+.become-mv-member-ul li::marker{ font-size: 1.5em; }
