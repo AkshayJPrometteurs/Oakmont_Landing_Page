@@ -20,7 +20,7 @@ const LandingPage = () => {
                 <AITips/>
                 <SupportedBookmarks/>
                 <Tournaments/>
-                <BecomeAMVPMember/>
+                <BecomeAMVPMember href={'/manage-subscription'}/>
                 <WhatsIncluded/>
                 <Testimonials/>
                 <ReferFriendsAndEarn/>

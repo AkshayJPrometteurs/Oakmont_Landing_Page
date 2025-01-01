@@ -23,7 +23,7 @@ export default function Header() {
             </NavbarContent>
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <Link href="#"><Button variant="flat" radius="full">Login</Button></Link>
+                    <Link href="#"><Button variant="bordered" radius="full">Login</Button></Link>
                 </NavbarItem>
                 <NavbarItem>
                     <Link href="#"><Button color="primary" radius="full">Get Started</Button></Link>
