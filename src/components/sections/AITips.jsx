@@ -42,19 +42,19 @@ const AITips = () => {
                         <div className="flex-1">
                             <h1 className="uppercase tracking-wider font-base-runner text-2xl md:text-3xl mb-4">+EV</h1>
                             <div className="border border-white px-5 py-3 rounded-xl flex items-center justify-between mb-6">
-                                <div><h1 className="text-2xl">50</h1><h1>Tips sent</h1></div>
+                                <div><h1 className="text-xl md:text-2xl">50</h1><h1>Tips sent</h1></div>
                                 <div className="p-3 bg-primaryColor rounded-full"><FaArrowUp /></div>
                             </div>
                             <div className="grid grid-col-1 md:grid-cols-2 items-center gap-6 md:gap-8">
                                 <div className="border border-white px-5 py-3 rounded-xl">
                                     <div className="flex items-end">
-                                        <h1 className="text-2xl">+40</h1>
+                                        <h1 className="text-xl md:text-2xl">+40</h1>
                                         <IoMdArrowDropup color="#00D95F" size={'2rem'} className="-ml-1.5 -mb-1.5"/>
                                     </div>
                                     <h1>Units Win</h1>
                                 </div>
                                 <div className="border border-white px-5 py-3 rounded-xl">
-                                    <h1 className="text-2xl">90%</h1>
+                                    <h1 className="text-xl md:text-2xl">90%</h1>
                                     <h1>Win Percentage</h1>
                                 </div>
                             </div>
@@ -64,13 +64,13 @@ const AITips = () => {
                         <div className="flex-1">
                             <h1 className="uppercase tracking-wider font-base-runner text-2xl md:text-3xl mb-4">ARB</h1>
                             <div className="border border-white px-5 py-3 rounded-xl flex items-center justify-between mb-6">
-                                <div><h1 className="text-2xl">60</h1><h1>Tips sent</h1></div>
+                                <div><h1 className="text-xl md:text-2xl">60</h1><h1>Tips sent</h1></div>
                                 <div className="p-3 bg-primaryColor rounded-full"><FaArrowUp /></div>
                             </div>
                             <div className="border border-white px-5 py-3 rounded-xl flex items-center justify-between mb-6">
                                 <div>
                                     <div className="flex items-end">
-                                        <h1 className="text-2xl">-40</h1>
+                                        <h1 className="text-xl md:text-2xl">-40</h1>
                                         <IoMdArrowDropdown color="#00D95F" size={'2rem'} className="-ml-1.5 -mb-1.5"/>
                                     </div>
                                     <h1>Units Win</h1>

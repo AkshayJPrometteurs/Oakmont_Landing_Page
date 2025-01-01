@@ -4,12 +4,12 @@ import React from "react";
 
 const DownloadApp = () => {
     return (
-        <section id="download-app-section" className="px-10 py-16 md:px-32 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
+        <section id="download-app-section" className="p-10 md:px-32 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
             <img src="assets/images/download-app-left-image.png" alt="download-app-left-image" className="w-full"/>
             <div>
                 <h1 className="uppercase text-3xl md:text-5xl text-center md:text-left font-base-runner">Download the new Oakmont Athletic app</h1>
                 <div className="flex flex-col md:flex-row gap-4 mt-8 items-center">
-                    <Button color="primary">Download For Free</Button>
+                    <Button color="primary" className='h-12 w-full md:w-auto md:px-14'>Download For Free</Button>
                     <div className="flex gap-4 w-full">
                         <button className="flex items-center justify-center bg-black text-white h-12 rounded-xl flex-1">
                             <svg viewBox="0 0 384 512" width="20" style={{ marginRight: "0.5rem" }} >

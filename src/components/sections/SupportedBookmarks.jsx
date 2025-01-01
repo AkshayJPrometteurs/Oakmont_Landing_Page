@@ -1,59 +1,22 @@
 "use client";
 import React from 'react';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from 'react-slick';
-import SectionLayout from '../SectionLayout';
+import Marquee from "react-fast-marquee";
 
 const SupportedBookmarks = () => {
-    const settings = {
-        dots: false,
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        autoplay: true,
-        speed: 2000,
-        autoplaySpeed: 2000,
-        cssEase: "linear",
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    };
-    const sliderImages = ['sb-slider-1','sb-slider-2','sb-slider-3','sb-slider-4','sb-slider-5','sb-slider-6','sb-slider-7'];
+    const sliderImages = ['sb-slider-1','sb-slider-2','sb-slider-7','sb-slider-3','sb-slider-4','sb-slider-5','sb-slider-6'];
     return (
-        <SectionLayout id={'supported-bookmarks-section'} bgcolor={'#fff'} color={'#000'} headingText={'Supported Bookmarks'}>
-            <div className="slider-container mt-20">
-                <Slider {...settings}>
-                    {sliderImages.map((images) => {
-                        return(
-                            <div key={images}>
-                                <img src={`assets/images/supported-bookmarks/${images}.png`} alt={images} loading="lazy" />
-                            </div>
-                        )
-                    })}
-                </Slider>
-            </div>
-        </SectionLayout>
+        <section id={'supported-bookmarks-section'} className='px-4 py-16'>
+            <h1 className='text-3xl md:text-5xl uppercase tracking-wider leading-[1.3!important] text-center font-base-runner mb-10'>Supported Bookmarks</h1>
+            <Marquee pauseOnHover={true}>
+                {sliderImages.map((images) => {
+                    return(
+                        <div key={images} className='px-10'>
+                            <img src={`assets/images/supported-bookmarks/${images}.png`} alt={images} loading="lazy" className='mx-auto px-8 py-4 bg-[#F6F6F6] rounded-md max-w-full' />
+                        </div>
+                    )
+                })}
+            </Marquee>
+        </section>
     )
 }
 
