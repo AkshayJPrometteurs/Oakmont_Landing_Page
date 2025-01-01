@@ -1,0 +1,4 @@
+export async function GET(req) {
+    const countries = [ "United States", "Canada", "United Kingdom", "France", "Germany", "India", "China", "Japan", "Australia", "Brazil", "South Africa", "Russia", "Italy", "Spain", "Mexico", "South Korea", "Indonesia", "Argentina", "Saudi Arabia", "Egypt", "Nigeria", "Singapore", "Thailand", "Vietnam", "Philippines", "Pakistan", "Bangladesh", "Malaysia", "Tanzania", "Kenya", "Uganda", "Zimbabwe", "Kuwait", "Qatar", "Bahrain", "Oman", "United Arab Emirates", "Jordan", "Israel", "Morocco", "Portugal", "Sweden", "Finland", "Norway", "Denmark", "Poland", "Netherlands", "Belgium", "Austria", "Switzerland", "Slovakia", "Czech Republic", "Hungary", "Romania", "Bulgaria", "Croatia", "Slovenia", "Serbia", "Montenegro", "Albania", "North Macedonia", "Armenia", "Belarus", "Ukraine" ];
+    return new Response(JSON.stringify(countries), { status: 200, headers: { 'Content-Type': 'application/json'}});
+}
