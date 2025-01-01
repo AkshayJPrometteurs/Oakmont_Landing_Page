@@ -1,5 +1,7 @@
+/* eslint-disable import/no-anonymous-default-export */
 /** @type {import('tailwindcss').Config} */
 import { nextui } from "@nextui-org/react";
+
 export default {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -15,6 +17,7 @@ export default {
         primaryColor : "#0177FF",
       },
       fontFamily: {
+        'dm-sans': ['DM Sans', 'Arial', 'sans-serif'],
         'base-runner': ['Base Runner', 'sans-serif'],
         'urbanist': ['Urbanist', 'sans-serif'],
       },

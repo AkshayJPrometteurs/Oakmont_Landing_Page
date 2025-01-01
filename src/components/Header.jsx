@@ -3,36 +3,30 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, Drawer, DrawerC
 import Link from "next/link";
 import { Fragment } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Menus from '../components/Menus';
 
 export default function Header() {
-    const navItems = [
-        { name: 'Home', url: '#home-section' },
-        { name: 'App', url: '#download-app-section' },
-        { name: 'AI Tips', url: '#ai-tips-section' },
-        { name: 'FAQ', url: '/faq' },
-        { name: 'Subscription', url: '/subscription' },
-        { name: 'Testimonials', url: '/testimonials' }
-    ];
+    const navItems = Menus();
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     return (
-        <Navbar className="bg-white shadow">
+        <Navbar className="bg-white shadow navbar-heading font-dm-sans">
             <NavbarBrand>
                 <img alt="logo" src="assets/images/logo.svg" className="hidden md:block" />
-                <img alt="logo" src="assets/images/only-logo.png" className="block md:hidden" width={60} height={60} />
+                <img alt="logo" src="assets/images/only-logo.png" className="block md:hidden max-w-12" />
             </NavbarBrand>
             <NavbarContent className="hidden sm:flex gap-4">
                 {navItems.map((item) => (
                     <NavbarItem key={item.url}>
-                        <Link color="foreground" href={item.url}>{item.name}</Link>
+                        <Link color="foreground" href={item.url} className="px-2">{item.name}</Link>
                     </NavbarItem>
                 ))}
             </NavbarContent>
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <Link href="#"><Button color="primary" variant="flat">Login</Button></Link>
+                    <Link href="#"><Button variant="flat" radius="full">Login</Button></Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link href="#"><Button color="primary">Get Started</Button></Link>
+                    <Link href="#"><Button color="primary" radius="full">Get Started</Button></Link>
                 </NavbarItem>
                 <NavbarItem className="block md:hidden">
                     <Button isIconOnly onPress={onOpen}><GiHamburgerMenu/></Button>

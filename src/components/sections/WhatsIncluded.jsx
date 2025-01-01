@@ -19,7 +19,7 @@ const WhatsIncluded = () => {
                 {items.map((data) => {
                     return(<Card key={data.title} className='shadow-none bg-[#262626] p-4 text-white'>
                         <CardBody>
-                            <div className='bg-white rounded-full p-4 w-20 mx-auto'>{data.icon}</div>
+                            <div className='bg-white rounded-full p-2 md:p-4 w-16 md:w-20 mx-auto'>{data.icon}</div>
                             <h3 className='text-center text-xl font-bold my-4'>{data.title}</h3>
                             <p className='text-gray-400'>{data.description}</p>
                         </CardBody>

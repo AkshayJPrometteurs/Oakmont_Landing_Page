@@ -9,6 +9,7 @@ import MainPageLayout from './layout'
 import WhatsIncluded from '@/components/sections/WhatsIncluded'
 import ReferFriendsAndEarn from '@/components/sections/ReferFriendsAndEarn'
 import FrequentlyAskQuestions from '@/components/sections/FrequentlyAskQuestions'
+import Testimonials from '@/components/sections/Testimonials'
 
 const LandingPage = () => {
     return (
@@ -21,6 +22,7 @@ const LandingPage = () => {
                 <Tournaments/>
                 <BecomeAMVPMember/>
                 <WhatsIncluded/>
+                <Testimonials/>
                 <ReferFriendsAndEarn/>
                 <FrequentlyAskQuestions/>
             </section>

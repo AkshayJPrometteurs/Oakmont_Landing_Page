@@ -4,8 +4,39 @@ import SectionLayout from '../SectionLayout';
 
 const Tournaments = () => {
     return (
-        <SectionLayout id={'tournaments-section'} bgcolor={'#fff'} color={'#000'} headingText={'Tournaments'}>
-            <p style={{ color : '#707070' }} className='py-5'>Our fantasy tournaments' are designed to be the ultimate challenge for sports punters with no money down and no risk. This isn't about luck; you will be rewarded for making smart selections, managing your points wisely, and outscoring other members to claim the top spot.</p>
+        <SectionLayout id={'tournaments-section'} bgcolor={'#F7F7F7'} color={'#000'} headingText={'Tournaments'}>
+            <p className='py-5 text-gray-500 font-urbanist'>Our fantasy tournaments' are designed to be the ultimate challenge for sports punters with no money down and no risk. This isn't about luck; you will be rewarded for making smart selections, managing your points wisely, and outscoring other members to claim the top spot.</p>
+            <div className='flex flex-col md:flex-row font-urbanist text-gray-500'>
+                <img src="assets/images/tournament-mobile-1.png" alt="tournaments" className='w-full block md:hidden' />
+                <div className='w-full md:w-[24%]'>
+                    <div className='md:h-24'></div>
+                    <div>
+                        <h4 className='font-bold mb-3 text-black'>Tournaments Features</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur. Faucibus morbi interdum gravida sed auctor amet vitae. Eu turpis volutpat interdum mattis purus. Aliquam aliquam varius eget est faucibus viverra.</p>
+                    </div>
+                    <div className='md:h-56'></div>
+                    <div>
+                        <h4 className='font-bold mb-3 text-black'>Tournaments Rewards</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur. Faucibus morbi interdum gravida sed auctor amet vitae. Eu turpis volutpat interdum mattis purus. Aliquam aliquam varius eget est faucibus viverra.</p>
+                    </div>
+                </div>
+                <img src="assets/images/tournaments.png" alt="tournaments" className='w-[68%] -mx-28 hidden md:block' />
+                <img src="assets/images/tournament-mobile-2.png" alt="tournaments" className='w-full block md:hidden' />
+                <div className='w-full md:w-[26%] '>
+                    <div className='md:h-36'></div>
+                    <h4 className='font-bold mb-5 text-black'>How It Works</h4>
+                    <ul style={{ listStyle: 'disc' }} className='pl-10'>
+                        <li className='mb-5'>Lorem ipsum dolor sit amet consectetur. Et vulputate lorem scelerisque in feugiat etiam cras. Molestie euismod arcu pretium in. </li>
+                        <li className='mb-5'>Venenatis elit sed vestibulum urna sed. Turpis elit mattis ullamcorper porta sit. </li>
+                        <li className='mb-5'>Convallis gravida pellentesque laoreet risus nibh bibendum ipsum egestas.</li>
+                        <li className='mb-5'>Amet a aliquam placerat diam neque scelerisque. Rhoncus nunc nibh nulla eget eget diam lorem.</li>
+                    </ul>
+                </div>
+            </div>
+            <div className='text-center mt-14 md:mt-0'>
+                <h1 className="uppercase text-5xl md:text-7xl font-base-runner text-primaryColor">$10,500.00</h1>
+                <p className='text-gray-500 text-xl my-6 font-urbanist'>Tournaments Payout</p>
+            </div>
         </SectionLayout>
     )
 }
