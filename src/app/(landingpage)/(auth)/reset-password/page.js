@@ -2,15 +2,15 @@
 
 import React, { useState } from 'react';
 import { Button, Form, Input } from '@nextui-org/react';
-import { useSearchParams } from 'next/navigation';
+// import { useSearchParams } from 'next/navigation';
 import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 import { IoIosArrowBack } from 'react-icons/io';
 import Link from 'next/link';
 import PasswordWithIcon from '@/components/forms/PasswordWithIcon';
 
 const ResetPassword = () => {
-    const searchParams = useSearchParams();
-    const email = searchParams.get('email');
+    // const searchParams = useSearchParams();
+    const email ='email'
     const [formValues, setFormValues] = useState({password:''});
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
