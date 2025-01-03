@@ -11,7 +11,7 @@ import ReferFriendsAndEarn from '@/components/sections/ReferFriendsAndEarn'
 import FrequentlyAskQuestions from '@/components/sections/FrequentlyAskQuestions'
 import Testimonials from '@/components/sections/Testimonials'
 
-const LandingPage = () => {
+const page = () => {
     return (
         <MainPageLayout>
             <section>
@@ -30,4 +30,4 @@ const LandingPage = () => {
     )
 }
 
-export default LandingPage
+export default page
