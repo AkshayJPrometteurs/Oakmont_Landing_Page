@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import FooterImage from '../../../../public/assets/images/footer-logo.png';
+import FooterImage from '../../../public/assets/images/footer-logo.png';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({subsets : ['latin']});

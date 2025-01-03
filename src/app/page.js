@@ -1,4 +1,4 @@
 import React from 'react';
-import LandingPage from './(landingpage)/(mainpage)/page';
+import LandingPage from './LandingPage';
 const page = () => { return <LandingPage/> }
 export default page
