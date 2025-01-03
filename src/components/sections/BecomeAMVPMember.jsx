@@ -82,10 +82,10 @@ const BecomeAMVPMember = ({isModalOpen,href}) => {
                             <span className="text-5xl text-primaryColor font-bold">{plan.price}</span>
                         </div>
                         <p className="text-sm text-gray-600">/{plan.billing}</p>
-                        <ul style={{ listStyle:'circle' }} className="text-left ml-5 become-mv-member-ul">
+                        <ul style={{ listStyle:'circle' }} className="text-left ml-8 mb-10 become-mv-member-ul">
                             {plan.features.map((feature) => <li key={feature} className="my-2">{feature}</li>)}
                         </ul>
-                        {isModalOpen ? ( <Button type="submit" color="primary" className="mt-5" onPress={() => handlePriceDetails(plan.title,plan.price)}>Get Started</Button> ) : ( <Link href={href}><Button type="submit" color="primary" className="mt-5">Get Started</Button></Link> )}
+                        {isModalOpen ? ( <Button type="button" color="primary" onPress={() => handlePriceDetails(plan.title,plan.price)}>Get Started</Button> ) : ( <Link href={href} className="bg-primaryColor px-6 py-2.5 rounded-xl text-white text-sm">Get Started</Link> )}
                     </div>
                 ))}
             </div>

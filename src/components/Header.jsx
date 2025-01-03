@@ -23,10 +23,10 @@ export default function Header() {
             </NavbarContent>
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <Link href="#"><Button variant="bordered" radius="full">Login</Button></Link>
+                    <Link href="/login" className="px-5 py-[0.6rem] rounded-full border border-gray-400">Login</Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link href="#"><Button color="primary" radius="full">Get Started</Button></Link>
+                    <Link href="/signup" className="bg-primaryColor px-5 py-[0.6rem] rounded-full text-white">Get Started</Link>
                 </NavbarItem>
                 <NavbarItem className="block md:hidden">
                     <Button isIconOnly onPress={onOpen}><GiHamburgerMenu/></Button>
