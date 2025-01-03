@@ -1,4 +1,4 @@
 import React from 'react';
-import SignUp from './SIgnUp';
+import SignUp from './SignUp';
 const page = () => <SignUp/>
 export default page
