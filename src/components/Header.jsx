@@ -1,13 +1,13 @@
 "use client";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, Drawer, DrawerContent, DrawerHeader, DrawerBody, useDisclosure } from "@nextui-org/react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, useDisclosure } from "@nextui-org/react";
 import Link from "next/link";
-import { Fragment } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Menus from '../components/Menus';
+import DrawerModule from "./Drawer";
 
 export default function Header() {
     const navItems = Menus();
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const {isOpen,onOpen,onOpenChange} = useDisclosure();
     return (
         <Navbar className="bg-white shadow navbar-heading font-dm-sans">
             <NavbarBrand>
@@ -32,22 +32,11 @@ export default function Header() {
                     <Button isIconOnly onPress={onOpen}><GiHamburgerMenu/></Button>
                 </NavbarItem>
             </NavbarContent>
-            <Drawer isOpen={isOpen} onOpenChange={onOpenChange} placement="left" size="xs">
-                <DrawerContent>
-                    {(onClose) => (
-                        <Fragment>
-                            <DrawerHeader className="flex flex-col justify-start gap-1 pl-0">
-                                <img alt="logo" src="assets/images/logo.svg" className="h-14" />
-                            </DrawerHeader>
-                            <DrawerBody>
-                            {navItems.map((item) => (
-                                <Link key={item.url} color="foreground" href={item.url}>{item.name}</Link>
-                            ))}
-                            </DrawerBody>
-                        </Fragment>
-                    )}
-                </DrawerContent>
-            </Drawer>
+            <DrawerModule isOpen={isOpen} onOpenChange={onOpenChange} placement={'left'} className="max-w-60" header={<img alt="logo" src="assets/images/logo.svg" className="h-12" />} headerClassName={'flex flex-col justify-start gap-1 pl-0'}>
+                {navItems.map((item) => (
+                    <Link key={item.url} color="foreground" href={item.url} className="text-center hover:bg-primaryColor hover:text-white w-full p-2 rounded-md">{item.name}</Link>
+                ))}
+            </DrawerModule>
         </Navbar>
     );
 }
