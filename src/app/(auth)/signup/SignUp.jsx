@@ -5,6 +5,7 @@ import { getLocalTimeZone, today } from "@internationalized/date";
 import PasswordWithIcon from '@/components/forms/PasswordWithIcon';
 import { IoIosArrowBack } from 'react-icons/io';
 import Link from 'next/link';
+// import Axios from '@/components/Axios';
 
 const SignUp = () => {
     const [formValues, setFormValues] = useState({fullname: '',contactno: '',password:''});
@@ -18,7 +19,7 @@ const SignUp = () => {
         (name === 'contactno') && (formattedValue = formatOnlyNumber(value));
         setFormValues({ ...formValues, [name]: formattedValue });
     }
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault();
         setIsFormNext(true);
         const formData = new FormData(e.currentTarget);
@@ -29,7 +30,14 @@ const SignUp = () => {
             return value.trim() !== '';
         });
 
-        if (allFilled) { console.log('Form is valid:', data); }
+        if (allFilled) {
+            // try {
+            //     const response = await Axios.post('users/register/',data);
+            //     console.log(response.data)
+            // } catch (error) {
+            //     console.log(error)
+            // }
+        }
     };
     return (
         <div className='p-4'>

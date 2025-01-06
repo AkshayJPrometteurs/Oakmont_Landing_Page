@@ -1,14 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SectionLayout from "../SectionLayout";
 import { Inter } from "next/font/google";
 import { Button, Divider, Form, Input, Select, SelectItem, useDisclosure } from "@nextui-org/react";
 import Link from "next/link";
 import Modals from '../Modals';
-import Axios from "../Axios";
 
 const inter = Inter({ subsets: ['latin'] });
-const BecomeAMVPMember = ({isModalOpen,href}) => {
+const BecomeAMVPMember = ({isModalOpen,href,contents,loading}) => {
     const plans = [{
         title: "Weekly",
         price: 17,
@@ -23,8 +22,6 @@ const BecomeAMVPMember = ({isModalOpen,href}) => {
     }];
 
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const [countries, setCountries] = useState([]);
-    const [isCountryLoading, setIsCountryLoading] = useState(false);
     const [planName, setPlanName] = useState();
     const [planPrice, setPlanPrice] = useState();
     const [planTax, setPlanTax] = useState(0);
@@ -54,22 +51,11 @@ const BecomeAMVPMember = ({isModalOpen,href}) => {
         setFormValues({...formValues,[name]: formattedValue});
     };
 
-    const getContriesData = async() => {
-        setIsCountryLoading(true);
-        try{
-            const response = await Axios.get('/api/countries');
-            setCountries(response.data);
-            setIsCountryLoading(false);
-        }catch(error){ console.error(error); }
-    }
-
     const onSubmit = (e) => {
         e.preventDefault();
         const formSubmitValues = { ...formValues, planName, planPrice };
         console.log(formSubmitValues);
     };
-
-    useEffect(() => { getContriesData(); },[])
 
     return (
         <SectionLayout id="become-a-mvp-member-section" bgcolor="#fff" color="#000" headingText="Become A MVP Member">
@@ -102,7 +88,7 @@ const BecomeAMVPMember = ({isModalOpen,href}) => {
                                     return null;
                                 }}/>
                                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                                    <Select isLoading={isCountryLoading} label="Billing Country" name="country" onChange={handleChange} value={formValues.country} isRequired errorMessage="Please choose country" placeholder="e.g. US">{countries.map((country) => <SelectItem key={country}>{country}</SelectItem> )}</Select>
+                                    <Select isLoading={loading} label="Billing Country" name="country" onChange={handleChange} value={formValues.country} isRequired errorMessage="Please choose country" placeholder="e.g. US">{contents?.map((country) => <SelectItem key={country}>{country}</SelectItem> )}</Select>
                                     <Input label="Billing Zip / Postal Code" type="text" maxLength={6} name="zipcode" className='mb-3' onChange={handleChange} value={formValues.zipcode} isRequired placeholder="e.g 123456" autoComplete="off" validate={(value) => {
                                         if (value === '') return "Please enter 6 digit zip / postal code";
                                         if (value.length < 6) return "Please must enter 6 digit zip /postal code";
