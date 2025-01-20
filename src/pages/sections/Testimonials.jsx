@@ -1,7 +1,7 @@
 import React from 'react'
-import SectionLayout from '../SectionLayout'
-import { Card, CardBody, User } from '@nextui-org/react';
+import { Card, CardBody, User } from "@heroui/react";
 import { RiDoubleQuotesL } from "react-icons/ri";
+import SectionLayout from '@/layouts/SectionLayout';
 
 const Testimonials = () => {
     const testimonalsData = [
@@ -38,10 +38,7 @@ const Testimonials = () => {
                         <CardBody>
                             <RiDoubleQuotesL color='#0177FF' size={'3rem'}/>
                             <p className='my-4'>{data.contents}</p>
-                            <User className='justify-start' avatarProps={{ src : `assets/images/testimonials/${data.image}` }}
-                                description={data.username}
-                                name={data.name}
-                            />
+                            <User className='justify-start' avatarProps={{ src : `assets/images/testimonials/${data.image}` }} description={data.username} name={data.name} />
                         </CardBody>
                     </Card>
                 )})}

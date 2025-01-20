@@ -20,3 +20,22 @@ html { scroll-behavior: smooth; }
 ::-webkit-scrollbar-track { background: #f1f1f1; }
 ::-webkit-scrollbar-thumb { background: #888; }
 ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+.Toastify__toast{padding: 0!important;border-radius: 12px!important;}
+
+[data-input-otp-container="true"] { width: 100%; }
+
+.guest-layout{
+    background-image: url('/assets/images/authentication.jpg');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height : 100%;
+    display: flex;
+}
+
+@media screen and (max-width:767px) {
+    .guest-layout{
+        display: none;
+    }
+}

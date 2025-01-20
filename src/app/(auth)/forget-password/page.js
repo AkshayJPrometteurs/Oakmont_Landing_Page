@@ -1,5 +1,11 @@
 import React from 'react';
-import ForgetPassword from './ForgetPassword';
-export const metadata = {title: "Oakmont Athletic : Forget Password", description: "Oakmont Athletic : Login"};
+import ForgetPassword from '@/pages/authentication/ForgetPassword';
+
+export const metadata = {
+    title: "Oakmont Athletic : Forget Password",
+    description: "Oakmont Athletic Forget Password"
+};
+
 const page = () => <ForgetPassword/>
+
 export default page
