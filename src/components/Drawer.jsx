@@ -1,9 +1,17 @@
 import React, { Fragment } from 'react';
-import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader } from '@nextui-org/react';
+import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader } from "@heroui/react";
 
-const DrawerModule = ({isOpen,onOpenChange,placement,size,className,classNames,header,footer,headerClassName,bodyClassName,footerClassName,children}) => {
+const DrawerModule = ({
+    isOpen, onOpenChange, placement, size, className, header, footer, headerClassName, bodyClassName, footerClassName, children
+}) => {
     return (
-        <Drawer isOpen={isOpen} onOpenChange={onOpenChange} placement={placement} size={size} className={className} classNames={{ classNames }}>
+        <Drawer
+            isOpen={isOpen}
+            onOpenChange={onOpenChange}
+            placement={placement}
+            size={size}
+            className={className}
+        >
             <DrawerContent>
                 {(onClose) => (
                     <Fragment>

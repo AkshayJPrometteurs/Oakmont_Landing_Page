@@ -1,13 +1,17 @@
 "use client";
-import React from 'react'
-import SectionLayout from '../SectionLayout';
+import React from 'react';
+import Image from 'next/image';
+import SectionLayout from '@/layouts/SectionLayout';
+import TournamentMainImage from '../../../public/assets/images/tournaments.png';
+import TournamentMobileOne from '../../../public/assets/images/tournament-mobile-1.png';
+import TournamentMobileSecond from '../../../public/assets/images/tournament-mobile-2.png';
 
 const Tournaments = () => {
     return (
         <SectionLayout id={'tournaments-section'} bgcolor={'#F7F7F7'} color={'#000'} headingText={'Tournaments'}>
             <p className='py-5 text-gray-500 font-urbanist'>Our fantasy tournaments' are designed to be the ultimate challenge for sports punters with no money down and no risk. This isn't about luck; you will be rewarded for making smart selections, managing your points wisely, and outscoring other members to claim the top spot.</p>
             <div className='flex flex-col md:flex-row font-urbanist text-gray-500'>
-                <img src="assets/images/tournament-mobile-1.png" alt="tournaments" className='w-full block md:hidden' />
+                <Image src={TournamentMobileOne} className='w-full block md:hidden' alt='TournamentMobileOne'/>
                 <div className='w-full md:w-[24%]'>
                     <div className='md:h-24'></div>
                     <div>
@@ -20,8 +24,8 @@ const Tournaments = () => {
                         <p>Lorem ipsum dolor sit amet consectetur. Faucibus morbi interdum gravida sed auctor amet vitae. Eu turpis volutpat interdum mattis purus. Aliquam aliquam varius eget est faucibus viverra.</p>
                     </div>
                 </div>
-                <img src="assets/images/tournaments.png" alt="tournaments" className='w-[68%] -mx-28 hidden md:block' />
-                <img src="assets/images/tournament-mobile-2.png" alt="tournaments" className='w-full block md:hidden' />
+                <Image src={TournamentMainImage} className='w-[68%] -mx-28 hidden md:block' alt='TournamentMainImage'/>
+                <Image src={TournamentMobileSecond} className='w-full block md:hidden' alt='TournamentMobileSecond'/>
                 <div className='w-full md:w-[26%] '>
                     <div className='md:h-36'></div>
                     <h4 className='font-bold mb-5 text-black'>How It Works</h4>

@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import BecomeAMVPMember from '@/components/sections/BecomeAMVPMember';
-import { Button, Checkbox, Divider } from '@nextui-org/react';
+import BecomeAMVPMember from '@/pages/sections/BecomeAMVPMember';
+import { Button, Checkbox, Divider } from "@heroui/react";
 import { Inter } from 'next/font/google';
 import axios from 'axios';
-import MainPageLayout from '../MainPageLayout';
+import MainPageLayout from '@/layouts/MainPageLayout';
 
 const inter = Inter({subsets:['latin']});
 const ManageSubscription = () => {
@@ -39,7 +39,7 @@ const ManageSubscription = () => {
                 <Divider className='my-6' />
                 <div className={inter.className}>
                     <h6 className='font-bold'>Plan Benefits:</h6>
-                    <div className='flex flex-wrap items-center gap-6 my-6'>
+                    <div className='flex flex-wrap items-center justify-between gap-6 my-6'>
                         {planBenifits.map((data,index) => <Checkbox className='opacity-100 font-normal' key={index} defaultSelected isDisabled>{data}</Checkbox>)}
                     </div>
                 </div>

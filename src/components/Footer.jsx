@@ -1,13 +1,15 @@
-import React from 'react'
+import React from 'react';
 import Menus from '../components/Menus';
 import Link from 'next/link';
-import { Divider } from '@nextui-org/react';
+import { Divider } from "@heroui/react";
+import Image from 'next/image';
+import FooterImage from '../../public/assets/images/footer-logo.png';
 
 const Footer = () => {
     const footerMenus = Menus();
     return (
         <footer className='bg-[#262626] text-white p-6 md:p-8 font-dm-sans'>
-            <img src="assets/images/footer-logo.png" alt="footer" className='mx-auto' />
+            <Image src={FooterImage} className='mx-auto' alt='FooterImage'/>
             <div className='flex flex-row flex-wrap justify-center items-center gap-y-4 gap-x-10 md:gap-10 my-10'>
                 {footerMenus.map((data,index) => <Link key={index} href={data.url}>{data.name}</Link>)}
             </div>

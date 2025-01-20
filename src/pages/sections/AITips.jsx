@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import { Avatar, Divider } from "@nextui-org/react";
-import SectionLayout from "../SectionLayout";
+import { Divider } from "@heroui/react";
 import { Inter } from "next/font/google";
 import { FaArrowUp } from "react-icons/fa";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { IoBarChartSharp } from "react-icons/io5";
+import SectionLayout from "@/layouts/SectionLayout";
 
 const inter = Inter({ subsets: ['latin'] });
 const AITips = () => {

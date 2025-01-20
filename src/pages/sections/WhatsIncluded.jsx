@@ -1,10 +1,10 @@
 "use client"
 import React from 'react';
-import SectionLayout from '../SectionLayout';
 import { LuBot } from "react-icons/lu";
-import { Card, CardBody } from '@nextui-org/react';
+import { Card, CardBody } from "@heroui/react";
 import { RiBasketballLine } from "react-icons/ri";
 import { TbDeviceAnalytics } from "react-icons/tb";
+import SectionLayout from '@/layouts/SectionLayout';
 
 const WhatsIncluded = () => {
     const items = [

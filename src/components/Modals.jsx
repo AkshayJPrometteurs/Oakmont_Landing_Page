@@ -1,16 +1,28 @@
-import React from 'react';
-import { Modal, ModalContent, ModalBody, ModalHeader, ModalFooter } from "@nextui-org/react";
+import React, { Fragment } from 'react';
+import { Modal, ModalContent, ModalBody, ModalHeader, ModalFooter } from "@heroui/react";
 
-const Modals = ({modalSize,modalHeader,children,modalFooter,isOpen,onOpenChange,classes,modalHeaderClass,modalBodyClass,modalFooterClass, scrollBehavior}) => {
+const Modals = ({
+    modalSize,modalHeader,children,modalFooter,isOpen,onOpenChange,classes,modalHeaderClass,modalBodyClass,modalFooterClass, scrollBehavior,hideCloseButton,isDismissable
+}) => {
     return (
-        <Modal backdrop='blur' isOpen={isOpen} size={modalSize} onOpenChange={onOpenChange} placement='center' scrollBehavior={scrollBehavior} className={classes}>
+        <Modal
+            backdrop='blur'
+            isOpen={isOpen}
+            size={modalSize}
+            onOpenChange={onOpenChange}
+            placement='center'
+            scrollBehavior={scrollBehavior}
+            className={classes}
+            hideCloseButton={hideCloseButton}
+            isDismissable={isDismissable}
+        >
             <ModalContent>
                 {(onClose) => (
-                    <ModalBody className='p-0'>
+                    <Fragment>
                         {modalHeader && <ModalHeader className={modalHeaderClass}>{modalHeader}</ModalHeader>}
                         <ModalBody className={modalBodyClass}>{children}</ModalBody>
                         {modalFooter && <ModalFooter className={modalFooterClass}>{modalFooter}</ModalFooter>}
-                    </ModalBody>
+                    </Fragment>
                 )}
             </ModalContent>
         </Modal>
