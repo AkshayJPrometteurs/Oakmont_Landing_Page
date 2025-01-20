@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import FooterImage from '../../public/assets/images/footer-logo.png';
 import { Inter } from 'next/font/google';
-import AlertComponent from '@/components/forms/AlertComponent';
+import AlertComponent from '@/components/utils/forms/AlertComponent';
 
 const inter = Inter({subsets : ['latin']});
 const GuestLayout = ({

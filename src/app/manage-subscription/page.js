@@ -1,5 +1,5 @@
 import React from 'react';
-import ManageSubscription from '@/pages/ManageSubscription';
+import ManageSubscription from '@/components/pages/ManageSubscription';
 
 export const metadata = {
     title: "Oakmont Athletic : Manage Subscription",

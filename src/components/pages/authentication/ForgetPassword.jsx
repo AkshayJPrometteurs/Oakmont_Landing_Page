@@ -5,11 +5,11 @@ import Link from 'next/link';
 import { IoIosArrowBack } from "react-icons/io";
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import Axios from '@/components/Axios';
+import Axios from '@/components/utils/Axios';
 import GuestLayout from '@/layouts/GuestLayout';
 import Image from 'next/image';
-import PasswordEmoji from '../../../public/assets/images/emoji/Password.png';
-import ButtonComponent from '@/components/forms/ButtonComponent';
+import PasswordEmoji from '../../../../public/assets/images/emoji/Password.png';
+import ButtonComponent from '@/components/utils/forms/ButtonComponent';
 
 const ForgetPassword = () => {
     const router = useRouter();

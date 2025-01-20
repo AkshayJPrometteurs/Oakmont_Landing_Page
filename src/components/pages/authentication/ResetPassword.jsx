@@ -4,14 +4,14 @@ import React, { useState } from 'react';
 import { Alert, Form } from "@heroui/react";
 import { IoIosArrowBack } from 'react-icons/io';
 import Link from 'next/link';
-import PasswordWithIcon from '@/components/forms/PasswordWithIcon';
+import PasswordWithIcon from '@/components/utils/forms/PasswordWithIcon';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Axios from '@/components/Axios';
+import Axios from '@/components/utils/Axios';
 import { toast } from 'react-toastify';
 import GuestLayout from '@/layouts/GuestLayout';
 import Image from 'next/image';
-import PasswordEmoji from '../../../public/assets/images/emoji/Password.png';
-import ButtonComponent from '@/components/forms/ButtonComponent';
+import PasswordEmoji from '../../../../public/assets/images/emoji/Password.png';
+import ButtonComponent from '@/components/utils/forms/ButtonComponent';
 
 const ResetPassword = () => {
     const router = useRouter();

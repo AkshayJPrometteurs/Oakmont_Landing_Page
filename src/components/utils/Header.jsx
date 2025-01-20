@@ -3,13 +3,13 @@
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, useDisclosure, Alert } from "@heroui/react";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Menus from '../components/Menus';
+import Menus from '@/components/utils/Menus';
 import DrawerModule from "./Drawer";
 import { useAuthServiceContext } from "@/contexts/AuthServiceProvider";
 import { LuUserRound } from "react-icons/lu";
 import Image from "next/image";
-import Logo from '../../public/assets/images/logo.svg';
-import LogoOnly from '../../public/assets/images/only-logo.png';
+import Logo from '../../../public/assets/images/logo.svg';
+import LogoOnly from '../../../public/assets/images/only-logo.png';
 import { IoLogOut } from "react-icons/io5";
 import { GoAlertFill } from "react-icons/go";
 import Modals from "./Modals";

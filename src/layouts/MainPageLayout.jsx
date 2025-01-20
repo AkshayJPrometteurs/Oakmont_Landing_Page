@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
-import HeadingSlider from '@/pages/sections/HeadingSlider';
+import Footer from '@/components/utils/Footer';
+import Header from '@/components/utils/Header';
+import HeadingSlider from '@/components/pages/sections/HeadingSlider';
 
 const MainPageLayout = ({children}) => {
     return (

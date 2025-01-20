@@ -5,7 +5,7 @@ import { createContext, Suspense, useContext, useEffect, useState } from "react"
 import { ToastContainer } from "react-toastify";
 import CryptoJS from 'crypto-js';
 import 'react-toastify/dist/ReactToastify.css';
-import LoadingComponent from "@/components/LoadingComponent";
+import LoadingComponent from "@/components/utils/LoadingComponent";
 
 const AuthContext = createContext({
     user : {},

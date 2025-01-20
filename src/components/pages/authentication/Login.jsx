@@ -3,16 +3,16 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Alert, Checkbox, Form, Input } from "@heroui/react";
 import Link from 'next/link';
-import PasswordWithIcon from '@/components/forms/PasswordWithIcon';
+import PasswordWithIcon from '@/components/utils/forms/PasswordWithIcon';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import Axios from '@/components/Axios';
+import Axios from '@/components/utils/Axios';
 import CryptoJS from 'crypto-js';
 import Cookies from 'js-cookie';
 import GuestLayout from '@/layouts/GuestLayout';
 import Image from 'next/image';
-import MarketingEmoji from '../../../public/assets/images/emoji/Marketing.png';
-import ButtonComponent from '@/components/forms/ButtonComponent';
+import MarketingEmoji from '../../../../public/assets/images/emoji/Marketing.png';
+import ButtonComponent from '@/components/utils/forms/ButtonComponent';
 
 const Login = () => {
     const router = useRouter();

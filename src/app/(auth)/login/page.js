@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from '@/pages/authentication/Login';
+import Login from '@/components/pages/authentication/Login';
 
 export const metadata = {
     title: "Oakmont Athletic : Login",

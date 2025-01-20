@@ -1,5 +1,5 @@
 import React from 'react';
-import TwoStepVerification from '@/pages/authentication/TwoStepVerification';
+import TwoStepVerification from '@/components/pages/authentication/TwoStepVerification';
 
 export const metadata = {
     title: "Oakmont Athletic : Sign Up Two Steps Verification",

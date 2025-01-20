@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "@heroui/react";
 import Image from "next/image";
-import DownloadBanerImage from '../../../public/assets/images/download-app-left-image.png';
+import DownloadBanerImage from '../../../../public/assets/images/download-app-left-image.png';
 
 const DownloadApp = () => {
     return (
