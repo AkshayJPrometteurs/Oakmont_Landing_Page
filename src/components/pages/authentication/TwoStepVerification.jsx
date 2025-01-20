@@ -3,13 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Button, Form, InputOtp } from "@heroui/react";
 import { useRouter, useSearchParams } from 'next/navigation';
-import Axios from '@/components/Axios';
+import Axios from '@/components/utils/Axios';
 import { toast } from 'react-toastify';
 import { useAuthServiceContext } from '@/contexts/AuthServiceProvider';
 import GuestLayout from '@/layouts/GuestLayout';
 import Image from 'next/image';
-import MessageEmoji from '../../../public/assets/images/emoji/Message.png';
-import ButtonComponent from '@/components/forms/ButtonComponent';
+import MessageEmoji from '../../../../public/assets/images/emoji/Message.png';
+import ButtonComponent from '@/components/utils/forms/ButtonComponent';
 
 const TwoStepVerification = ({submitURL, resendURL, afterSubmitRedirect, pageName}) => {
     const searchParams = useSearchParams();

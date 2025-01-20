@@ -5,10 +5,10 @@ import { Inter } from "next/font/google";
 import { Button, Divider, Form, Input, Select, SelectItem, useDisclosure } from "@heroui/react";
 import Link from "next/link";
 import SectionLayout from "@/layouts/SectionLayout";
-import Modals from "@/components/Modals";
+import Modals from "@/components/utils/Modals";
 
 const inter = Inter({ subsets: ['latin'] });
-const BecomeAMVPMember = ({isModalOpen,href,contents,loading}) => {
+const BecomeAMVPMember = ({ isModalOpen, linkPath, contents, loading}) => {
     const plans = [{
         title: "Weekly",
         price: 17,
@@ -77,7 +77,7 @@ const BecomeAMVPMember = ({isModalOpen,href,contents,loading}) => {
                             <span className="text-5xl text-primaryColor font-bold">{plan.price}</span>
                         </div>
 
-                        <p className="text-sm text-gray-600">/{plan.billing}</p>
+                        <p className="text-sm text-gray-600">{"/"+plan.billing}</p>
                         <ul style={{ listStyle:'circle' }} className="text-left ml-8 mb-10 become-mv-member-ul">
                             {plan.features.map((feature) => <li key={feature} className="my-2">{feature}</li>)}
                         </ul>
@@ -85,7 +85,7 @@ const BecomeAMVPMember = ({isModalOpen,href,contents,loading}) => {
                         {isModalOpen ? (
                             <Button type="button" color="primary" onPress={() => handlePriceDetails(plan.title,plan.price)}>Get Started</Button>
                         ) : (
-                            <Link href={href} className="bg-primaryColor px-6 py-2.5 rounded-xl text-white text-sm">Get Started</Link>
+                            <Link href={linkPath} className="bg-primaryColor px-6 py-2.5 rounded-xl text-white text-sm">Get Started</Link>
                         )}
                     </div>
                 ))}

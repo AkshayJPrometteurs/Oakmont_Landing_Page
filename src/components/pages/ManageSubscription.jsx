@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import BecomeAMVPMember from '@/pages/sections/BecomeAMVPMember';
+import BecomeAMVPMember from '@/components/pages/sections/BecomeAMVPMember';
 import { Button, Checkbox, Divider } from "@heroui/react";
 import { Inter } from 'next/font/google';
 import axios from 'axios';

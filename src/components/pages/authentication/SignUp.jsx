@@ -2,15 +2,15 @@
 import React, { useState } from 'react';
 import { Alert, Button, Checkbox, DatePicker, Form, Input } from "@heroui/react";
 import { getLocalTimeZone, today } from "@internationalized/date";
-import PasswordWithIcon from '@/components/forms/PasswordWithIcon';
+import PasswordWithIcon from '@/components/utils/forms/PasswordWithIcon';
 import { IoIosArrowBack } from 'react-icons/io';
 import Link from 'next/link';
-import Axios from '@/components/Axios';
+import Axios from '@/components/utils/Axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import GuestLayout from '@/layouts/GuestLayout';
 import Image from 'next/image';
-import MarketingEmoji from '../../../public/assets/images/emoji/Marketing.png';
+import MarketingEmoji from '../../../../public/assets/images/emoji/Marketing.png';
 
 const SignUp = () => {
     const router = useRouter();

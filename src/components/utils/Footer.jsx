@@ -1,9 +1,9 @@
 import React from 'react';
-import Menus from '../components/Menus';
+import Menus from '@/components/utils/Menus';
 import Link from 'next/link';
 import { Divider } from "@heroui/react";
 import Image from 'next/image';
-import FooterImage from '../../public/assets/images/footer-logo.png';
+import FooterImage from '../../../public/assets/images/footer-logo.png';
 
 const Footer = () => {
     const footerMenus = Menus();

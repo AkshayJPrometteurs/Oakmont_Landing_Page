@@ -1,9 +1,9 @@
 "use client"
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Accordion, AccordionItem, Button, Skeleton} from "@heroui/react";
 import { IoIosArrowForward } from "react-icons/io";
 import { Inter } from 'next/font/google';
-import Axios from '@/components/Axios';
+import Axios from '@/components/utils/Axios';
 import SectionLayout from '@/layouts/SectionLayout';
 
 const inter = Inter({ subsets : ['latin']});

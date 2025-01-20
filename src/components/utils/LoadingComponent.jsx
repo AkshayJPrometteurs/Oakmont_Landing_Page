@@ -2,7 +2,7 @@ import React from 'react';
 import { Spinner } from "@heroui/react";
 import { Inter } from 'next/font/google';
 import Image from 'next/image';
-import LoadingImage from '../../public/assets/images/logo.svg';
+import LoadingImage from '../../../public/assets/images/logo.svg';
 
 const inter = Inter({subsets : ['latin']});
 const LoadingComponent = () => {

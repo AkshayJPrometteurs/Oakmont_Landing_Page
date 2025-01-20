@@ -1,5 +1,5 @@
 import React from 'react';
-import ForgetPassword from '@/pages/authentication/ForgetPassword';
+import ForgetPassword from '@/components/pages/authentication/ForgetPassword';
 
 export const metadata = {
     title: "Oakmont Athletic : Forget Password",

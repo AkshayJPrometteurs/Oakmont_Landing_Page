@@ -1,5 +1,5 @@
 import React from 'react';
-import ResetPassword from '@/pages/authentication/ResetPassword';
+import ResetPassword from '@/components/pages/authentication/ResetPassword';
 
 export const metadata = {
     title: "Oakmont Athletic : Reset Password",

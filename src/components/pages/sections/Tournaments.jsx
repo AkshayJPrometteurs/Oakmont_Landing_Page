@@ -2,9 +2,9 @@
 import React from 'react';
 import Image from 'next/image';
 import SectionLayout from '@/layouts/SectionLayout';
-import TournamentMainImage from '../../../public/assets/images/tournaments.png';
-import TournamentMobileOne from '../../../public/assets/images/tournament-mobile-1.png';
-import TournamentMobileSecond from '../../../public/assets/images/tournament-mobile-2.png';
+import TournamentMainImage from '../../../../public/assets/images/tournaments.png';
+import TournamentMobileOne from '../../../../public/assets/images/tournament-mobile-1.png';
+import TournamentMobileSecond from '../../../../public/assets/images/tournament-mobile-2.png';
 
 const Tournaments = () => {
     return (
