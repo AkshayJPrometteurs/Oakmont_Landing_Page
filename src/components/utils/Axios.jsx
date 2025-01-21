@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 const Axios = axios.create({
     baseURL : process.env.NEXT_PUBLIC_BACKEND_BASE_URL,
-    withCredentials : false
+    withCredentials : true
 });
 
 Axios.interceptors.request.use((config)=>{
