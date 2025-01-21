@@ -10,6 +10,7 @@ import GuestLayout from '@/layouts/GuestLayout';
 import Image from 'next/image';
 import MessageEmoji from '../../../../public/assets/images/emoji/Message.png';
 import ButtonComponent from '@/components/utils/forms/ButtonComponent';
+import Cookies from 'js-cookie';
 
 const TwoStepVerification = ({submitURL, resendURL, afterSubmitRedirect, pageName}) => {
     const searchParams = useSearchParams();
@@ -53,6 +54,7 @@ const TwoStepVerification = ({submitURL, resendURL, afterSubmitRedirect, pageNam
                         data?.data?.access_token,
                         data?.data?.user_data
                     );
+                    Cookies.set('_om_rt',data?.data?.refresh_token)
                     router.push('/');
                 }
 

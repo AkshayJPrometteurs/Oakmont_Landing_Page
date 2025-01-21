@@ -17,12 +17,10 @@ import { Inter } from "next/font/google";
 import { Fragment, useState } from "react";
 import Axios from "./Axios";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const inter = Inter({subsets : ['latin']});
 export default function Header() {
-    const router = useRouter();
     const navItems = Menus();
 
     const { isOpen: isOpenAppDrawer, onOpen: onOpenAppDrawer, onOpenChange: onOpenChangeAppDrawer } = useDisclosure();
@@ -31,15 +29,19 @@ export default function Header() {
     const [signOutLoader, setSignOutLoader] = useState(false);
 
     const handleSignOut = async() => {
-        const token = Cookies.get('_om_at');
+        const token = Cookies.get('_om_rt');
         setSignOutLoader(true);
         try{
             const { data } = await Axios.post('/users/logout',{ refresh_token: token });
             if(data?.status_code === 200 && data?.success){
-                router.push('/');
+                Cookies.remove('_om_at');
+                Cookies.remove('_om_rt');
+                Cookies.remove('_om_uda');
+                onCloseSignOut();
                 toast(<Alert color='success' title={data?.message} />, {closeButton:false});
+                setTimeout(() => { location.reload(); },1500)
             }
-        } catch(err){ console.error(err) } finally{ setSignOutLoader(false); }
+        } catch(err){ console.log(err) } finally{ setSignOutLoader(false); }
     }
 
     return (

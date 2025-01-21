@@ -1,15 +1,20 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import FooterImage from '../../public/assets/images/footer-logo.png';
 import { Inter } from 'next/font/google';
 import AlertComponent from '@/components/utils/forms/AlertComponent';
+import { useAuthServiceContext } from '../contexts/AuthServiceProvider';
+import { useRouter } from 'next/navigation';
 
 const inter = Inter({subsets : ['latin']});
 const GuestLayout = ({
     children, header, headerIcon, headerPara, headerParaText, alertVisibility
 }) => {
+    const router = useRouter();
+    const { isAuthenticated } = useAuthServiceContext();
+    useEffect(() => { if(isAuthenticated){ router.push('/'); } },[isAuthenticated,router])
     return (
         <section className={`grid grid-cols-1 md:grid-cols-2 items-center gap-4 p-4 h-screen ${inter.className}`}>
             <section className='guest-layout flex-col justify-center items-center w-full rounded-xl relative'>
