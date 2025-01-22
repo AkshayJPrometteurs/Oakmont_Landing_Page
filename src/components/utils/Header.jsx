@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, useDisclosure, Alert } from "@heroui/react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, useDisclosure, Alert, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, Divider } from "@heroui/react";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Menus from '@/components/utils/Menus';
@@ -18,37 +18,38 @@ import { Fragment, useState } from "react";
 import Axios from "./Axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import { MdOutlineLogout } from "react-icons/md";
 
 const inter = Inter({subsets : ['latin']});
 export default function Header() {
     const navItems = Menus();
 
     const { isOpen: isOpenAppDrawer, onOpen: onOpenAppDrawer, onOpenChange: onOpenChangeAppDrawer } = useDisclosure();
-    const { isOpen: isOpenSignOut, onOpen: onOpenSignOut, onOpenChange: onOpenChangeSignOut, onClose: onCloseSignOut } = useDisclosure();
-    const { isAuthenticated } = useAuthServiceContext();
-    const [signOutLoader, setSignOutLoader] = useState(false);
+    const { isOpen: isOpenLogOut, onOpen: onOpenLogOut, onOpenChange: onOpenChangeLogOut, onClose: onCloseLogOut } = useDisclosure();
+    const { isAuthenticated, user } = useAuthServiceContext();
+    const [logOutLoader, setLogOutLoader] = useState(false);
 
-    const handleSignOut = async() => {
-        const token = Cookies.get('_om_rt');
-        setSignOutLoader(true);
+    const handleLogOut = async() => {
+        setLogOutLoader(true);
         try{
+            const token = Cookies.get('_om_rt');
             const { data } = await Axios.post('/users/logout',{ refresh_token: token });
             if(data?.status_code === 200 && data?.success){
                 Cookies.remove('_om_at');
                 Cookies.remove('_om_rt');
                 Cookies.remove('_om_uda');
-                onCloseSignOut();
+                onCloseLogOut();
                 toast(<Alert color='success' title={data?.message} />, {closeButton:false});
                 setTimeout(() => { location.reload(); },1500)
             }
-        } catch(err){ console.log(err) } finally{ setSignOutLoader(false); }
+        } catch(err){ console.log(err) } finally{ setLogOutLoader(false); }
     }
 
     return (
         <Navbar className="bg-white shadow navbar-heading font-dm-sans">
             <NavbarBrand>
                 <Image src={Logo} alt="Logo" className="hidden md:block"/>
-                <Image src={LogoOnly} alt="Logo" className="block md:hidden max-w-12"/>
+                <Image src={LogoOnly} alt="Logo" className="block md:hidden max-w-10"/>
             </NavbarBrand>
 
             <NavbarContent className="hidden sm:flex gap-4">
@@ -62,23 +63,40 @@ export default function Header() {
             <NavbarContent justify="end" className="gap-2 md:gap-4">
                 <NavbarItem>
                     {isAuthenticated ? (
-                        <Link href="#" className="flex items-center rounded-full px-3 py-2 border border-gray-400"><LuUserRound className="text-2xl font-normal"/></Link>
+                        <Dropdown placement="bottom-center">
+                            <DropdownTrigger className="cursor-pointer">
+                                <div className="flex items-center rounded-full px-3 py-2 border border-gray-400">
+                                    <LuUserRound className="text-lg md:text-2xl font-normal"/>
+                                </div>
+                            </DropdownTrigger>
+                            <DropdownMenu aria-label="Profile Actions" variant="flat">
+                                <DropdownItem key="profile" className="gap-2">
+                                    <Avatar
+                                        className="w-16 h-16 mx-auto mb-3"
+                                        src="https://i.pravatar.cc/150?u=a04258114e29026708c"
+                                    />
+                                    <p className="font-bold text-primaryColor text-center text-base">{user && user.username}</p>
+                                    <p className="text-center text-base text-gray-600">{user && user.email}</p>
+                                </DropdownItem>
+                                <DropdownItem>
+                                    <Divider/>
+                                </DropdownItem>
+                                <DropdownItem onPress={onOpenLogOut} className="text-danger" color="danger">
+                                    <div className='flex items-center justify-center'>
+                                        <MdOutlineLogout className="text-2xl" />
+                                        <span>Logout</span>
+                                    </div>
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
                     ):(
-                        <Link href="/login" className="px-5 py-2.5 rounded-full border border-gray-400">Login</Link>
+                        <Link href="/login" className="px-3.5 py-2 md:px-5 md:py-2.5 text-sm md:text-base rounded-full border border-gray-400">Login</Link>
                     )}
                 </NavbarItem>
 
                 <NavbarItem>
-                    <Link href={isAuthenticated ? 'manage-subscription' : "/signup"} className="bg-primaryColor px-5 py-2.5 rounded-full text-white">{isAuthenticated ? 'Manage Subscription' : "Get Started"}</Link>
+                    <Link href={isAuthenticated ? 'manage-subscription' : "/signup"} className="bg-primaryColor px-3.5 py-2 md:px-5 md:py-2.5 text-sm md:text-base rounded-full text-white">{isAuthenticated ? 'Manage Subscription' : "Get Started"}</Link>
                 </NavbarItem>
-
-                {isAuthenticated && (
-                    <NavbarItem className="hidden md:block">
-                        <Button isIconOnly aria-label="SignOut" color="danger" onPress={onOpenSignOut}>
-                            <IoLogOut className="text-2xl" />
-                        </Button>
-                    </NavbarItem>
-                )}
 
                 <NavbarItem className="block md:hidden">
                     <Button isIconOnly onPress={onOpenAppDrawer}><GiHamburgerMenu/></Button>
@@ -91,24 +109,24 @@ export default function Header() {
                 ))}
                 {isAuthenticated && (
                     <div className="absolute bottom-3 w-full left-0 px-4">
-                        <Button startContent={<IoLogOut className="text-2xl" />} aria-label="SignOut" color="danger" variant="shadow" onPress={onOpenSignOut} className="w-full">Sign Out</Button>
+                        <Button startContent={<MdOutlineLogout className="text-2xl" />} aria-label="LogOut" color="danger" variant="shadow" onPress={onOpenLogOut} className="w-full">Logout</Button>
                     </div>
                 )}
             </DrawerModule>
 
-            <Modals isOpen={isOpenSignOut} onOpenChange={onOpenChangeSignOut} hideCloseButton={true} modalBodyClass={'p-0 gap-[0!important]'} isDismissable={false}>
+            <Modals isOpen={isOpenLogOut} onOpenChange={onOpenChangeLogOut} hideCloseButton={true} modalBodyClass={'p-0 gap-[0!important]'} isDismissable={false}>
                 <div className={`text-center py-6 px-4 ${inter.className}`}>
                     <GoAlertFill className="text-danger text-4xl md:text-5xl mx-auto"/>
-                    <h1 className="text-2xl font-bold mt-6 mb-2">Sign Out</h1>
-                    <p>Are you sure you would like to sign out of your account?</p>
+                    <h1 className="text-2xl font-bold mt-6 mb-2">Logout</h1>
+                    <p>Are you sure you would like to logout of your account?</p>
                 </div>
-                <div className={`bg-gray-50 flex items-center gap-4 justify-center py-4 px-2 ${inter.className}`}>
-                    {signOutLoader ? (
-                        <Button color="primary" disabled isLoading className="px-6" onPress={onCloseSignOut}>Please wait...</Button>
+                <div className={`bg-gray-100 flex items-center gap-4 justify-center py-4 px-2 ${inter.className}`}>
+                    {logOutLoader ? (
+                        <Button color="primary" disabled isLoading className="px-6" onPress={onCloseLogOut}>Please wait...</Button>
                     ):(
                         <Fragment>
-                            <Button color="default" className="px-6" onPress={onCloseSignOut}>Cancel</Button>
-                            <Button color="danger" className="px-6" onPress={handleSignOut}>Sign Out</Button>
+                            <Button color="default" className="px-6" onPress={onCloseLogOut}>No! Cancel</Button>
+                            <Button color="danger" className="px-6" onPress={handleLogOut}>Yes! Logout</Button>
                         </Fragment>
                     )}
                 </div>

@@ -36,6 +36,7 @@ const Login = () => {
 
     const onSubmit = async(e) => {
         e.preventDefault();
+        setIsApiLoader(true);
         const formData = Object.fromEntries(new FormData(e.currentTarget));
 
         if(isRememberMe){
@@ -50,11 +51,16 @@ const Login = () => {
             const { data } = await Axios.post('/users/login',formData);
             if(data?.status_code === 200 && data?.success){
                 setIsVisible(false);
-                router.push(`/login/two-step-verification?id=${data?.data?.user_id}&email=${formData?.email}`);
+
+                Cookies.set('_om_pr', CryptoJS.AES.encrypt(
+                    JSON.stringify({ id : data?.data?.user_id, email : formData?.email
+                }), "OakMontParams").toString(), { expires: 1, secure: true });
+
+                router.push(`/login/two-step-verification`);
                 toast(<Alert color='success' title={data?.message} />, {closeButton:false});
             }
-        } catch (error) {
-            setIsApiErrors(error?.response?.data?.message);
+        } catch ({response}) {
+            setIsApiErrors(response?.data?.message);
             setIsVisible(true);
         } finally { setIsApiLoader(false); }
     };

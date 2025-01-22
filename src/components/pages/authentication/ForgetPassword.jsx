@@ -10,6 +10,8 @@ import GuestLayout from '@/layouts/GuestLayout';
 import Image from 'next/image';
 import PasswordEmoji from '../../../../public/assets/images/emoji/Password.png';
 import ButtonComponent from '@/components/utils/forms/ButtonComponent';
+import CryptoJS from 'crypto-js';
+import Cookies from 'js-cookie';
 
 const ForgetPassword = () => {
     const router = useRouter();
@@ -24,14 +26,19 @@ const ForgetPassword = () => {
 
         const formData = Object.fromEntries(new FormData(e.currentTarget));
         try {
-            const response = await Axios.post('/users/request-password-reset',formData);
-            if(response?.data?.status_code === 200 && response?.data?.success){
+            const { data } = await Axios.post('/users/request-password-reset',formData);
+            if(data?.status_code === 200 && data?.success){
                 setIsVisible(false);
-                router.push(`/forget-password/two-step-verification?email=${formData.email}`);
-                toast(<Alert color='success' title={response?.data?.message} />, {closeButton:false});
+
+                Cookies.set('_om_pr', CryptoJS.AES.encrypt(
+                    JSON.stringify({ email : formData?.email
+                }), "OakMontParams").toString(), { expires: 1, secure: true });
+
+                router.push(`/forget-password/two-step-verification`);
+                toast(<Alert color='success' title={data?.message} />, {closeButton:false});
             }
-        } catch (error) {
-            setIsApiErrors(error?.response?.data?.message);
+        } catch ({response}) {
+            setIsApiErrors(response?.data?.message);
             setIsVisible(true);
         } finally { setIsApiLoader(false); }
     };

@@ -11,15 +11,18 @@ import { toast } from 'react-toastify';
 import GuestLayout from '@/layouts/GuestLayout';
 import Image from 'next/image';
 import MarketingEmoji from '../../../../public/assets/images/emoji/Marketing.png';
+import CryptoJS from 'crypto-js';
+import Cookies from 'js-cookie';
 
 const SignUp = () => {
     const router = useRouter();
 
-    const [formValues, setFormValues] = useState({first_name: '',last_name: '',contact_number: '',password:''});
+    const [formValues, setFormValues] = useState({ first_name: '', last_name: '', contact_number: '', password:'' });
     const [isFormNext, setIsFormNext] = useState(false);
     const [isApiErrors, setIsApiErrors] = useState('');
     const [isApiLoader, setIsApiLoader] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
+    const [isValidTermsAndConditions, setIsValidTermsAndConditions] = useState(false);
 
     const formatOnlyNumber = (value) => { return value.replace(/\D/g, ""); }
     const formatOnlyAlphabetsAndSpace = (value) => { return value.replace(/[^a-zA-Z\s]/g, ""); };
@@ -34,11 +37,14 @@ const SignUp = () => {
 
     const onSubmit = async(e) => {
         e.preventDefault();
-        setIsFormNext(true);
         const formData = Object.fromEntries(new FormData(e.currentTarget));
+
+        if(formData.terms_and_condition == ''){
+            setIsFormNext(true);
+        }else{ setIsValidTermsAndConditions(true); }
+
         const allFilled = Object.entries(formData).every(([key, value]) => {
-            if (key === 'affiliate_code') return true;
-            if (key === 'termsandconditions') return true;
+            if (key === 'affiliate_code' || key === 'terms_and_condition') return true;
             return value.trim() !== '';
         });
 
@@ -46,14 +52,22 @@ const SignUp = () => {
             setIsApiLoader(true);
             const formattedDob = new Date(formData.dob).toLocaleDateString('en-GB');
             try {
-                const response = await Axios.post('/users/register',{...formData, dob: formattedDob, user_type: 2, membership_type: 'free' });
-                if(response?.data?.status_code === 200 && response?.data?.success){
+                const { data } = await Axios.post('/users/register',{
+                    ...formData, dob: formattedDob, user_type: 2, membership_type: 'free'
+                });
+
+                if(data?.status_code === 200 && data?.success){
                     setIsVisible(false);
-                    router.push(`/signup/two-step-verification?id=${response?.data?.data?.user?.id}&email=${response?.data?.data?.user?.email}`);
-                    toast(<Alert color='success' title={response?.data?.message} description="Verification code sent on your email-id"/>, {closeButton:false});
+
+                    Cookies.set('_om_pr', CryptoJS.AES.encrypt(
+                        JSON.stringify({ id : data?.data?.user?.id, email : formData?.email
+                    }), "OakMontParams").toString(), { expires: 1, secure: true });
+
+                    router.push(`/signup/two-step-verification`);
+                    toast(<Alert color='success' title={data?.message} description="Verification code sent on your email-id"/>, {closeButton:false});
                 }
-            } catch (error) {
-                setIsApiErrors(error?.response?.data?.message);
+            } catch ({response}) {
+                setIsApiErrors(response?.data?.message);
                 setIsVisible(true);
             } finally { setIsApiLoader(false); }
         }
@@ -84,7 +98,7 @@ const SignUp = () => {
 
                     <DatePicker label="Date of birth" name='dob' className='mb-1.5' isRequired maxValue={today(getLocalTimeZone())} errorMessage="Please enter your date of birth"/>
 
-                    <Input label="Contact Number" type="text" name="contact_number" className='mb-2' isRequired errorMessage="Please enter your contact no." placeholder="e.g 7865646656" value={formValues.contact_number} onChange={handleChange} autoComplete="off" />
+                    <Input label="Contact Number" type="text" name="contact_number" className='mb-2' isRequired errorMessage="Please enter your contact no." placeholder="e.g 7865646656" value={formValues.contact_number} onChange={handleChange} autoComplete="off" maxLength={10}/>
                 </div>
                 <div className={`w-full ${isFormNext ? '' : 'hidden'}`}>
                     <h1 className='font-bold text-gray-600 mb-4'>User Information</h1>
@@ -106,7 +120,7 @@ const SignUp = () => {
                     <Input label="Paste Affilate Code" type="text" name="affiliate_code" className='mb-4' autoComplete="off" />
                 </div>
 
-                <Checkbox className='mb-1 text-sm'>Agree to terms and conditions</Checkbox>
+                <Checkbox isInvalid={isValidTermsAndConditions} className='mb-1 text-sm' name='terms_and_condition' onChange={(e) => setIsValidTermsAndConditions(e.target.checked ? false :true)}>Agree to terms and conditions</Checkbox>
 
                 <Button type="submit" color='primary' className='w-full' isLoading={isFormNext && isApiLoader}>
                     {isFormNext ? isApiLoader ? 'Please wait...' : 'Verify' : 'Next'}
