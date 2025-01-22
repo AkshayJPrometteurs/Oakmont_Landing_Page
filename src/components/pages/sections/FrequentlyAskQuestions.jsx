@@ -14,7 +14,7 @@ const FrequentlyAskQuestions = () => {
     const getFAQsList = async() => {
         setFaqsLoader(true)
         try {
-            const { data } = await Axios.get('users/faqs');
+            const { data } = await Axios.get('faqs');
             setFaqs(data?.data);
             setFaqsLoader(false);
         } catch (error) { console.log(error); setFaqsLoader(false) }

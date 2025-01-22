@@ -26,6 +26,8 @@ const BecomeAMVPMember = ({ isModalOpen, linkPath, contents, loading}) => {
     const [planName, setPlanName] = useState();
     const [planPrice, setPlanPrice] = useState();
     const [planTax, setPlanTax] = useState(0);
+    const [zipCodeLength, setZipCodeLength] = useState(6);
+    const [zipCodePlaceholder, setZipCodePlaceholder] = useState("e.g 123456");
 
     const handlePriceDetails = (plan, price) => {
         setPlanName(plan);
@@ -47,6 +49,17 @@ const BecomeAMVPMember = ({ isModalOpen, linkPath, contents, loading}) => {
         name === 'creditcard' && (formattedValue = formatOnlyNumber(value).replace(/(.{4})/g, "$1 ").trim());
         (name === 'zipcode' || name === 'cvv') && (formattedValue = formatOnlyNumber(value));
         name === 'fullname' && (formattedValue = formatOnlyAlphabetsAndSpace(value));
+
+        if(name === 'country'){
+            const selectedCountry = contents.find((c) => c.name === value);
+            setZipCodeLength(selectedCountry.zipCodeLength);
+            let zipCodePlaceholder = "";
+            for (let i = 0; i < selectedCountry.zipCodeLength; i++) {
+                zipCodePlaceholder += Math.floor(Math.random() * 10);
+            }
+            console.log(zipCodePlaceholder)
+            setZipCodePlaceholder("e.g "+zipCodePlaceholder);
+        }
 
         if (name === 'expiration') {
             const sanitizedValue = formatOnlyNumber(e.target.value);
@@ -107,12 +120,12 @@ const BecomeAMVPMember = ({ isModalOpen, linkPath, contents, loading}) => {
 
                                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                                     <Select isLoading={loading} label="Billing Country" name="country" onChange={handleChange} value={formValues.country} isRequired errorMessage="Please choose country" placeholder="e.g. US">
-                                        {contents?.map((country) => <SelectItem key={country}>{country}</SelectItem> )}
+                                        {contents?.map(({name}) => <SelectItem key={name}>{name}</SelectItem> )}
                                     </Select>
 
-                                    <Input label="Billing Zip / Postal Code" type="text" maxLength={6} name="zipcode" className='mb-3' onChange={handleChange} value={formValues.zipcode} isRequired placeholder="e.g 123456" autoComplete="off" validate={(value) => {
-                                        if (value === '') return "Please enter 6 digit zip / postal code";
-                                        if (value.length < 6) return "Please must enter 6 digit zip /postal code";
+                                    <Input label="Billing Zip/Postal Code" type="text" maxLength={zipCodeLength} name="zipcode" className='mb-3' onChange={handleChange} value={formValues.zipcode} isRequired placeholder={zipCodePlaceholder} autoComplete="off" validate={(value) => {
+                                        if (value === '') return `Please enter ${zipCodeLength} digit zip/postal code`;
+                                        if (value.length < zipCodeLength) return `Please must enter ${zipCodeLength} digit zip/postal code`;
                                         return null;
                                     }} />
                                 </div>
@@ -163,7 +176,8 @@ const BecomeAMVPMember = ({ isModalOpen, linkPath, contents, loading}) => {
                             <p className="text-sm">Lorem ipsum dolor sit amet consectetur. Urna consectetur pretium ornare tincidunt ipsum orci dolor.</p>
 
                             <div className='bg-[#F7F7F7] py-4 px-6 my-4 rounded-md'>
-                                <p className="mb-2">{planName}</p>
+                                {/* <p className="mb-2">{planName}</p> */}
+                                <p className="mb-2">Lorem ipsum dolor sit amet</p>
                                 <h1 className="text-2xl md:text-4xl text-black">${planPrice}.00</h1>
                             </div>
 

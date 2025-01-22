@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import FooterImage from '../../public/assets/images/footer-logo.png';
 import { Inter } from 'next/font/google';
@@ -21,8 +21,8 @@ const GuestLayout = ({
             </section>
             <section className='w-full p-4'>
                 <h1 className='text-[#262B43E5] text-xl md:text-2xl font-bold flex gap-2 items-center'>{header}{headerIcon}</h1>
-                <p className='text-gray-500 mt-1 mb-4'>{headerPara}</p>
-                {headerParaText && <p className='mb-6'>{headerParaText}</p>}
+                <h1 className='text-gray-500 mt-1 mb-4'>{headerPara}</h1>
+                <h1 className='mb-6'>{headerParaText && headerParaText}</h1>
 
                 {alertVisibility.description && (
                     <AlertComponent type={alertVisibility.type} variant={'flat'} description={alertVisibility.description} isVisible={alertVisibility.visible} />
