@@ -22,7 +22,7 @@ const BecomeAMVPMember = ({ isModalOpen, linkPath, contents, loading}) => {
         features: ["Arbitrage bot", "+EV bot", "Fantasy tournaments", "News and analysis", "Team events"],
     }];
 
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
     const [planName, setPlanName] = useState();
     const [planPrice, setPlanPrice] = useState();
     const [planTax, setPlanTax] = useState(0);
@@ -77,6 +77,10 @@ const BecomeAMVPMember = ({ isModalOpen, linkPath, contents, loading}) => {
         e.preventDefault();
         const formSubmitValues = { ...formValues, planName, planPrice };
         console.log(formSubmitValues);
+        setFormValues({
+            email: '', country: '', zipcode: '', fullname: '', creditcard: '', expiration: '', cvv: ''
+        });
+        onClose();
     };
 
     return (
