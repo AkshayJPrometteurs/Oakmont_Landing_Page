@@ -63,7 +63,7 @@ const ResetPassword = () => {
             alertVisibility = {{ description : isApiErrors, type : 'danger', visible : isVisible }}
         >
             <Form validationBehavior="native" onSubmit={onSubmit}>
-                <PasswordWithIcon className={'mb-3'} name='new_password' isRequired={true} onChange={handleChange} label="Password" errorMessage="Please enter your password"/>
+                <PasswordWithIcon className={'mb-3'} name='new_password' isRequired={true} onChange={handleChange} label="New Password" errorMessage="Please enter your password"/>
 
                 <PasswordWithIcon className={'mb-3'} name='confirm_new_password' isRequired={true} onChange={handleChange} label="Confirm Password" validate={(value) => {
                     if(value === '') return "Please enter your confirm password";
