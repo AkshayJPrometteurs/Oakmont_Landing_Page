@@ -143,7 +143,7 @@ const SignUp = () => {
 						validate={(value) => {
 							const selectedDate = moment(value).toDate();
 							const minValidDate = moment(today(getLocalTimeZone())).subtract(18, 'years').toDate();
-							return selectedDate < minValidDate ? "You must be at least 18 years old." : null;
+							return selectedDate > minValidDate ? "You must be at least 18 years old." : null;
 						}}
 					/>
 					
