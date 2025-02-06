@@ -15,23 +15,23 @@ import WhatsIncluded from '@/components/pages/sections/WhatsIncluded';
 import { useAuthServiceContext } from '@/contexts/AuthServiceProvider';
 
 const LandingPage = () => {
-	const { isAuthenticated } = useAuthServiceContext();
-	return (
-		<MainPageLayout>
-			<section>
-				<BannerContents/>
-				<DownloadApp/>
-				<AITips/>
-				<SupportedBookmarks/>
-				<Tournaments/>
-				<BecomeAMVPMember linkPath={isAuthenticated ? '/manage-subscription' : '/signup'}/>
-				<WhatsIncluded/>
-				<Testimonials/>
-				<ReferFriendsAndEarn/>
-				<FrequentlyAskQuestions/>
-			</section>
-		</MainPageLayout>
-	)
+    const { isAuthenticated } = useAuthServiceContext();
+    return (
+        <MainPageLayout>
+            <section>
+                <BannerContents/>
+                <DownloadApp/>
+                <AITips/>
+                <SupportedBookmarks/>
+                <Tournaments/>
+                <BecomeAMVPMember linkPath={isAuthenticated ? '/manage-subscription' : '/signup'}/>
+                <WhatsIncluded/>
+                <Testimonials/>
+                <ReferFriendsAndEarn/>
+                <FrequentlyAskQuestions/>
+            </section>
+        </MainPageLayout>
+    )
 }
 
 export default LandingPage

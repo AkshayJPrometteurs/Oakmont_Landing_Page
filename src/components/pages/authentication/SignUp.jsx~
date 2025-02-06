@@ -79,7 +79,7 @@ const SignUp = () => {
 	
 	return (
 		(<GuestLayout
-			header="Welcome to Oakmont Athletic!"
+			header={'Welcome to Oakmont Athletic!'}
 			headerIcon={<Image src={MarketingEmoji} height={5} width={25} alt='emoji'/>}
 			headerPara={"Please sign-up to your account and start the adventure"}
 			alertVisibility = {{ description : isApiErrors, type : 'danger', visible : isVisible }}
