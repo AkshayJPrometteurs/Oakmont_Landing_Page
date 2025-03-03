@@ -1,27 +1,16 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BecomeAMVPMember from '@/components/pages/sections/BecomeAMVPMember';
 import { Button, Checkbox, Divider } from "@heroui/react";
 import { Inter } from 'next/font/google';
-import axios from 'axios';
 import MainPageLayout from '@/layouts/MainPageLayout';
 import { useAuthServiceContext } from '@/contexts/AuthServiceProvider';
 
 const inter = Inter({subsets:['latin']});
 const ManageSubscription = () => {
     const planBenifits = ['Arbitrage bot','+EV bot','Fantasy Tournaments','News and Analysis','Team Events'];
-    const [countries, setCountries] = useState([]);
-    const [isCountryLoading, setIsCountryLoading] = useState(false);
     const { user } = useAuthServiceContext();
-    const getContriesData = async() => {
-        setIsCountryLoading(true);
-        try{
-            const response = await axios.get('/api/countries');
-            setCountries(response.data);
-            setIsCountryLoading(false);
-        }catch(error){ console.error(error); }
-    }
-    useEffect(() => { getContriesData(); },[])
+
     return (
         <MainPageLayout>
             <section className='p-10 md:px-32 md:py-16'>
@@ -52,7 +41,7 @@ const ManageSubscription = () => {
                     </div>
                 </div>
 
-                <BecomeAMVPMember contents={countries} loading={isCountryLoading} isModalOpen={true} />
+                <BecomeAMVPMember isModalOpen={true} />
             </section>
         </MainPageLayout>
     )

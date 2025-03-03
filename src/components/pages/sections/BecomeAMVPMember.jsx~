@@ -6,6 +6,7 @@ import Link from "next/link";
 import SectionLayout from "@/layouts/SectionLayout";
 import Modals from "@/components/utils/Modals";
 import Axios from "@/components/utils/Axios";
+import axios from "axios";
 import PaymentForm from "@/components/pages/stripe/PaymentForm";
 import {Inter} from "next/font/google";
 
