@@ -17,6 +17,7 @@ const BecomeAMVPMember = ({isModalOpen, linkPath, contents, loading}) => {
     const [planPrice, setPlanPrice] = useState();
     const [planName, setPlanName] = useState();
     const [plans, setPlans] = useState([]);
+    const [modalSize, setModalSize] = useState("5xl");
 
     const getPlanDetailsList = async () => {
         try {
@@ -35,6 +36,23 @@ const BecomeAMVPMember = ({isModalOpen, linkPath, contents, loading}) => {
     }
 
     useEffect(() => { getPlanDetailsList(); }, [planPrice]);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth <= 640) {
+                setModalSize("md");
+            } else if (window.innerWidth <= 768) {
+                setModalSize("2xl");
+            } else {
+                setModalSize("5xl");
+            }
+        };
+    
+        handleResize(); 
+        window.addEventListener("resize", handleResize);
+    
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     return(
         <SectionLayout id="become-a-mvp-member-section" bgcolor="#fff" color="#000" headingText="Become A MVP Member">
@@ -61,7 +79,7 @@ const BecomeAMVPMember = ({isModalOpen, linkPath, contents, loading}) => {
                 ))}
             </div>
 
-            <Modals modalSize="5xl" isOpen={isOpen} onOpenChange={onOpenChange} modalBodyClass={'p-0'}>
+            <Modals modalSize={modalSize} isOpen={isOpen} onOpenChange={onOpenChange} modalBodyClass={'p-0 max-h-screen overflow-y-auto'}>
                 <PaymentForm countryLoader={loading} contents={contents} planName={planName} planPrice={planPrice} planID={planID} onClose={onClose}/>
             </Modals>
         </SectionLayout>
