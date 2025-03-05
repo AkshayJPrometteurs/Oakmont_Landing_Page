@@ -39,3 +39,9 @@ html { scroll-behavior: smooth; }
         display: none;
     }
 }
+
+@media (min-width: 760px) and (max-width: 860px) {
+    .banner-width {
+      width: 80% !important;
+    }
+  }

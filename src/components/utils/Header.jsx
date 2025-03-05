@@ -72,7 +72,7 @@ export default function Header() {
         }, 1500);
       }
     } catch (err) {
-      console.log(err );
+      console.log(err);
     } finally {
       setLogOutLoader(false);
     }
@@ -84,28 +84,23 @@ export default function Header() {
       maxWidth="xl"
     >
       <NavbarBrand>
-      <Image src={Logo} alt="Logo" className="hidden md:block"/>
-      <Image src={LogoOnly} alt="Logo" className="block md:hidden max-w-10"/>
         <Link href="/">
-          {/* <Image
-            src={Logo}
-            alt="Logo"
-            className="hidden md:block w-auto h-12"
-            priority
-          />
+          <Image src={Logo} alt="Logo" className="hidden md:block" />
           <Image
             src={LogoOnly}
             alt="Logo"
-            className="block md:hidden w-10 h-10"
-            priority
-          /> */}
+            className="block md:hidden max-w-10"
+          />
         </Link>
       </NavbarBrand>
 
       <NavbarContent className="hidden md:flex gap-2 lg:gap-4" justify="center">
         {navItems.map((item) => (
           <NavbarItem key={item.url}>
-            <Link href={item.url} className="px-2 py-1 text-sm lg:text-base ">
+         <Link 
+  href={item.url} 
+  className="px-2 py-1 text-sm lg:text-base hover:text-primaryColor transition-colors duration-200"
+>
               {item.name}
             </Link>
           </NavbarItem>
@@ -169,7 +164,7 @@ export default function Header() {
         </NavbarItem>
 
         <NavbarItem className="block md:hidden">
-          <Button isIconOnly onPress={onOpenAppDrawer} size="sm" >
+          <Button isIconOnly onPress={onOpenAppDrawer} size="sm">
             <GiHamburgerMenu />
           </Button>
         </NavbarItem>
