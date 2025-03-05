@@ -12,13 +12,14 @@ const Tournaments = () => {
             <p className='py-5 text-gray-500 font-urbanist'>Our fantasy tournaments' are designed to be the ultimate challenge for sports punters with no money down and no risk. This isn't about luck; you will be rewarded for making smart selections, managing your points wisely, and outscoring other members to claim the top spot.</p>
             <div className='flex flex-col md:flex-row font-urbanist text-gray-500'>
                 <Image src={TournamentMobileOne} className='w-full block md:hidden' alt='TournamentMobileOne'/>
-                <div className='w-full md:w-[24%]'>
+                <div className='w-full md:w-[26%]'>
                     <div className='md:h-24'></div>
                     <div>
                         <h4 className='font-bold mb-3 text-black'>Tournaments Features</h4>
                         <p>Lorem ipsum dolor sit amet consectetur. Faucibus morbi interdum gravida sed auctor amet vitae. Eu turpis volutpat interdum mattis purus. Aliquam aliquam varius eget est faucibus viverra.</p>
                     </div>
-                    <div className='md:h-56'></div>
+                    <div className='md:h-40'/>
+                    {/* <div className='md:h-56'></div> */}
                     <div>
                         <h4 className='font-bold mb-3 text-black'>Tournaments Rewards</h4>
                         <p>Lorem ipsum dolor sit amet consectetur. Faucibus morbi interdum gravida sed auctor amet vitae. Eu turpis volutpat interdum mattis purus. Aliquam aliquam varius eget est faucibus viverra.</p>
@@ -28,8 +29,8 @@ const Tournaments = () => {
                 <Image src={TournamentMobileSecond} className='w-full block md:hidden' alt='TournamentMobileSecond'/>
                 <div className='w-full md:w-[26%] '>
                     <div className='md:h-36'></div>
-                    <h4 className='font-bold mb-5 text-black'>How It Works</h4>
-                    <ul style={{ listStyle: 'disc' }} className='pl-10'>
+                    <h4 className='font-bold mb-5 text-black pl-8'>How It Works</h4>
+                    <ul style={{ listStyle: 'disc' }} className='pl-16'>
                         <li className='mb-5'>Lorem ipsum dolor sit amet consectetur. Et vulputate lorem scelerisque in feugiat etiam cras. Molestie euismod arcu pretium in. </li>
                         <li className='mb-5'>Venenatis elit sed vestibulum urna sed. Turpis elit mattis ullamcorper porta sit. </li>
                         <li className='mb-5'>Convallis gravida pellentesque laoreet risus nibh bibendum ipsum egestas.</li>
