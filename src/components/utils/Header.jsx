@@ -72,7 +72,10 @@ export default function Header() {
         }, 1500);
       }
     } catch (err) {
-      console.log(err);
+      toast(<Alert color="danger" title={err?.response?.data?.message} />, {
+        closeButton: false,
+      });
+      console.log(err?.response?.data?.message);
     } finally {
       setLogOutLoader(false);
     }
@@ -97,10 +100,10 @@ export default function Header() {
       <NavbarContent className="hidden md:flex gap-2 lg:gap-4" justify="center">
         {navItems.map((item) => (
           <NavbarItem key={item.url}>
-         <Link 
-  href={item.url} 
-  className="px-2 py-1 text-sm lg:text-base hover:text-primaryColor transition-colors duration-200"
->
+            <Link
+              href={item.url}
+              className="px-2 py-1 text-sm lg:text-base hover:text-primaryColor transition-colors duration-200"
+            >
               {item.name}
             </Link>
           </NavbarItem>

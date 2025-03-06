@@ -9,7 +9,7 @@ import TournamentMobileSecond from '../../../../public/assets/images/tournament-
 const Tournaments = () => {
     return (
         <SectionLayout id={'tournaments-section'} bgcolor={'#F7F7F7'} color={'#000'} headingText={'Tournaments'}>
-            <p className='py-5 text-gray-500 font-urbanist'>Our fantasy tournaments' are designed to be the ultimate challenge for sports punters with no money down and no risk. This isn't about luck; you will be rewarded for making smart selections, managing your points wisely, and outscoring other members to claim the top spot.</p>
+            <p className='py-5 text-gray-500 font-urbanist text-center '>Our fantasy tournaments' are designed to be the ultimate challenge for sports punters with no money down and no risk. This isn't about luck; you will be rewarded for making smart selections, managing your points wisely, and outscoring other members to claim the top spot.</p>
             <div className='flex flex-col md:flex-row font-urbanist text-gray-500'>
                 <Image src={TournamentMobileOne} className='w-full block md:hidden' alt='TournamentMobileOne'/>
                 <div className='w-full md:w-[26%]'>

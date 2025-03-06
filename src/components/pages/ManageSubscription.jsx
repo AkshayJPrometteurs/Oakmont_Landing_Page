@@ -13,7 +13,7 @@ const ManageSubscription = () => {
 
     return (
         <MainPageLayout>
-            <section className='p-10 md:px-32 md:py-16'>
+            <section className='px-10 pt-10 md:px-32 md:pt-16'>
                 <h1 className='text-3xl md:text-5xl uppercase tracking-wider leading-[1.3!important] font-base-runner'>Weekly Subscription plans</h1>
 
                 <p className='my-6 font-urbanist'>Lorem ipsum dolor sit amet consectetur. Id non aliquet sed nulla purus dictum in in blandit. Porta suspendisse nunc enim faucibus bibendum quis urna augue.</p>
@@ -41,8 +41,9 @@ const ManageSubscription = () => {
                     </div>
                 </div>
 
-                <BecomeAMVPMember isModalOpen={true} />
+
             </section>
+            <BecomeAMVPMember isModalOpen={true} />
         </MainPageLayout>
     )
 }
