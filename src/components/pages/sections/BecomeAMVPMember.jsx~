@@ -309,14 +309,11 @@ const BecomeAMVPMemberExternal = ({ isModalOpen, linkPath, contents, isCountryLo
                                     name="fullname"
                                     className='mb-3'
                                     isRequired
+                                    errorMessage="Please enter full name"
                                     placeholder="e.g Sam Morgan"
                                     value={formValues.fullname}
                                     onChange={handleChange}
                                     autoComplete="off"
-                                    validate={(value) => {
-                                        if (value.trim() === '') return "Please enter your full name";
-                                        return null;
-                                    }}
                                 />
 
                                 <div className="w-full bg-default-100 mb-3 py-2 px-3 rounded-2xl">
