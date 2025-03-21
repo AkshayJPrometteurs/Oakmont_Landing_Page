@@ -54,9 +54,7 @@ export default function Header() {
             <NavbarContent className="hidden sm:flex gap-4">
                 {navItems.map((item) => (
                     <NavbarItem key={item.url}>
-                        <Link color="foreground" href={item.url} className="px-2">
-                            {item.name}
-                        </Link>
+                        <Link color="foreground" href={item.url} className="px-2">{item.name}</Link>
                     </NavbarItem>
                 ))}
             </NavbarContent>
