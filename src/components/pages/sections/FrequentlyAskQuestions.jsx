@@ -42,9 +42,9 @@ const FrequentlyAskQuestions = () => {
                 </Accordion>
             )}
 
-            <div className='text-center'>
-                <Button color="primary" className={`mt-6 rounded-lg ${inter.className}`}>Ask A Question <IoIosArrowForward/></Button>
-            </div>
+            {/*<div className='text-center'>*/}
+            {/*    <Button color="primary" className={`mt-6 rounded-lg ${inter.className}`}>Ask A Question <IoIosArrowForward/></Button>*/}
+            {/*</div>*/}
         </SectionLayout>
     )
 }
