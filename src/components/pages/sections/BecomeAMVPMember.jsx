@@ -180,23 +180,53 @@ const BecomeAMVPMemberExternal = ({ isModalOpen, linkPath, contents, isCountryLo
         <SectionLayout id="become-a-mvp-member-section" bgcolor="#fff" color="#000" headingText="Become A MVP Member">
             <div className="flex flex-col md:flex-row justify-center gap-6 p-4 mt-6">
                 {plans.length > 0 && plans?.map((plan) => (
-                    <div key={plan.plan_name} className={`w-full md:w-96 shadow-xl rounded-xl text-center p-6 border ${inter.className}`}>
+                    // <div key={plan.plan_name} className={`w-full md:w-96 shadow-xl rounded-xl text-center p-6 border ${inter.className}`}>
+                    //     <h6 className="font-semibold text-lg md:text-xl">{plan.plan_name}</h6>
+                    //     <div className="flex justify-center my-4">
+                    //         <sup className="text-xl mt-2">$</sup>
+                    //         <span className="text-5xl text-primaryColor font-bold">{plan.plan_price}</span>
+                    //     </div>
+                    //
+                    //     <p className="text-sm text-gray-600">{"/"+plan.plan_duration}</p>
+                    //     <ul style={{ listStyle:'circle' }} className="text-left ml-8 mb-10 become-mv-member-ul">
+                    //         {plan.plan_feature.map((feature) => <li key={feature} className="my-2">{feature}</li>)}
+                    //     </ul>
+                    //
+                    //     {isModalOpen ? (
+                    //         <Button type="button" color="primary" onPress={() => handlePriceDetails(plan.stripe_price_id,plan.plan_price)}>Get Started</Button>
+                    //     ) : (
+                    //         <Link href={linkPath} className="bg-primaryColor px-6 py-2.5 rounded-xl text-white text-sm">Get Started</Link>
+                    //     )}
+                    // </div>
+                    <div key={plan.plan_name} className={`w-full md:w-96 shadow-xl rounded-xl text-center p-6 border flex flex-col h-full min-h-[450px] ${inter.className}`}>
                         <h6 className="font-semibold text-lg md:text-xl">{plan.plan_name}</h6>
+
                         <div className="flex justify-center my-4">
                             <sup className="text-xl mt-2">$</sup>
                             <span className="text-5xl text-primaryColor font-bold">{plan.plan_price}</span>
                         </div>
 
-                        <p className="text-sm text-gray-600">{"/"+plan.plan_duration}</p>
-                        <ul style={{ listStyle:'circle' }} className="text-left ml-8 mb-10 become-mv-member-ul">
-                            {plan.plan_feature.map((feature) => <li key={feature} className="my-2">{feature}</li>)}
+                        <p className="text-sm text-gray-600">{"/" + plan.plan_duration}</p>
+
+                        {/* Features List - Makes Content Fill Available Space */}
+                        <ul style={{ listStyle: 'circle' }} className="text-left ml-8 flex-grow">
+                            {plan.plan_feature.map((feature) => (
+                                <li key={feature} className="my-2">{feature}</li>
+                            ))}
                         </ul>
 
-                        {isModalOpen ? (
-                            <Button type="button" color="primary" onPress={() => handlePriceDetails(plan.stripe_price_id,plan.plan_price)}>Get Started</Button>
-                        ) : (
-                            <Link href={linkPath} className="bg-primaryColor px-6 py-2.5 rounded-xl text-white text-sm">Get Started</Link>
-                        )}
+                        {/* Button Wrapper - Ensures Consistent Alignment */}
+                        <div className="mt-auto pb-2">
+                            {isModalOpen ? (
+                                <Button type="button" color="primary" onPress={() => handlePriceDetails(plan.stripe_price_id, plan.plan_price)}>
+                                    Get Started
+                                </Button>
+                            ) : (
+                                <Link href={linkPath} className="bg-primaryColor px-6 py-2.5 rounded-xl text-white text-sm">
+                                    Get Started
+                                </Link>
+                            )}
+                        </div>
                     </div>
                 ))}
             </div>
