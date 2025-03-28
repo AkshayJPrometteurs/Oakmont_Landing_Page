@@ -61,9 +61,10 @@ const SignUp = () => {
 		if (allFilled) {
 			setIsApiLoader(true);
 			try {
+				const formatedDateOfBirth = moment(formData.dob).format('YYYY-MM-DD');
 				const { data } = await Axios.post('/users/register',{
 					...formData,
-                    dob: moment(formData.dob).format('YYYY-MM-DD'),
+                    dob: formatedDateOfBirth,
                     user_type: 2,
                     membership_type: 'free',
                     accepted_terms_id : acceptedTermsAndConditionID
@@ -81,20 +82,12 @@ const SignUp = () => {
 					);
 					
 					router.push(`/signup/two-step-verification`);
-					toast(
-						<Alert
-							color='success'
-							title={data?.message}
-							description="Verification code sent on your email-id"
-						/>, {closeButton:false}
-					);
+					toast(<Alert color='success' title={data?.message} description="Verification code sent on your email-id"/>, {closeButton:false});
 				}
 			} catch ({response}) {
 				setIsApiErrors(response?.data?.message);
 				setIsVisible(true);
-			} finally {
-				setIsApiLoader(false);
-			}
+			} finally { setIsApiLoader(false); }
 		}
 	};
 
