@@ -54,7 +54,7 @@ const Footer = () => {
             </div>
             <Divider className='bg-[#E6E6E6] mt-8 mb-4'/>
             <div className='flex flex-col-reverse md:flex-row items-center justify-center md:justify-between gap-4'>
-                <p>Copyrights ©{moment().format('Y')} Oakmont Athletic</p>
+                <p>Copyrights ©{moment().format('YYYY')} Oakmont Athletic</p>
                 <div className='flex gap-y-4 gap-x-8 items-center'>
                     <p onClick={onOpen} className="cursor-pointer">Terms & Conditions</p>
                     <Link href={'#'}>Privacy Policy</Link>

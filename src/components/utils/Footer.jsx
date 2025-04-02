@@ -57,7 +57,7 @@ const Footer = () => {
                 <p>Copyrights ©{moment().format('YYYY')} Oakmont Athletic</p>
                 <div className='flex gap-y-4 gap-x-8 items-center'>
                     <p onClick={onOpen} className="cursor-pointer">Terms & Conditions</p>
-                    <Link href={'#'}>Privacy Policy</Link>
+                    <Link href="/privacy-policy">Privacy Policy</Link>
                 </div>
             </div>
             <Modals
