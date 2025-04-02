@@ -67,7 +67,7 @@ const TwoStepVerification = ({submitURL, resendURL, afterSubmitRedirect, pageNam
                 Cookies.remove('_om_pr');
                 if(pageName === 'forgetPassword'){
                     Cookies.set('_om_rpr', CryptoJS.AES.encrypt(
-                        JSON.stringify({ email : params?.email, rt: data?.data?.reset_token
+                        JSON.stringify({ email : params?.email, rt: formData.code
                     }), "OakMontResetParams").toString(), { expires: 1, secure: true });
                     router.push(`/reset-password`);
                 }else{
