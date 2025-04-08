@@ -70,7 +70,7 @@ export default function Header() {
                                     <LuUserRound className="text-lg md:text-2xl font-normal"/>
                                 </div>
                             </DropdownTrigger>
-                            <DropdownMenu aria-label="Profile Actions" variant="flat">
+                            <DropdownMenu aria-label="Profile Actions" variant="flat" classNames={{ list : 'p-0 m-0' }}>
                                 <DropdownItem key="profile" className="gap-2">
                                     <Avatar
                                         className="w-16 h-16 mx-auto mb-3"
