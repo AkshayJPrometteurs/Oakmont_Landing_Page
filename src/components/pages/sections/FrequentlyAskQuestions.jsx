@@ -36,7 +36,7 @@ const FrequentlyAskQuestions = () => {
                 <Accordion variant="splitted">
                     {faqs?.map((data,index) => {
                         return(<AccordionItem className={`shadow rounded-md font-bold ${inter.className}`} key={index} aria-label={data.question} title={data.question}>
-                            <p className={`font-normal ${inter.className}`}>{data.answer}</p>
+                            <div dangerouslySetInnerHTML={{ __html : data.answer }} className={`font-normal ${inter.className}`} />
                         </AccordionItem>)
                     })}
                 </Accordion>
