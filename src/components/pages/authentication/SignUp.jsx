@@ -19,7 +19,7 @@ import { FaInfoCircle } from "react-icons/fa";
 
 const SignUp = () => {
 	const router = useRouter();
-	
+
 	const [formValues, setFormValues] = useState({
 		first_name: '', last_name: '', contact_number: '', password:''
 	});
@@ -34,7 +34,7 @@ const SignUp = () => {
 
 	const formatOnlyNumber = (value) => { return value.replace(/\D/g, ""); }
 	const formatOnlyAlphabetsAndSpace = (value) => { return value.replace(/[^a-zA-Z\s]/g, ""); };
-	
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		let formattedValue = value;
@@ -42,22 +42,25 @@ const SignUp = () => {
 		(name === 'contact_number') && (formattedValue = formatOnlyNumber(value));
 		setFormValues({ ...formValues, [name]: formattedValue });
 	}
-	
+
 	const onSubmit = async(e) => {
 		e.preventDefault();
 		const formData = Object.fromEntries(new FormData(e.currentTarget));
-		
+
 		if(formData.terms_and_condition === ''){
 			setIsFormNext(true);
 		}else{
             setIsValidTermsAndConditions(true);
         }
-		
+
 		const allFilled = Object.entries(formData).every(([key, value]) => {
-			if (key === 'affiliate_code' || key === 'terms_and_condition') return true;
+            console.log(key, value)
+			if (key === 'affiliate_referral_code' || key === 'terms_and_condition') return true;
 			return value.trim() !== '';
 		});
-		
+
+        console.log(allFilled)
+
 		if (allFilled) {
 			setIsApiLoader(true);
 			try {
@@ -68,10 +71,10 @@ const SignUp = () => {
                     membership_type: 'free',
                     accepted_terms_id : acceptedTermsAndConditionID
 				});
-				
+
 				if(data?.success && data?.status_code === 200){
 					setIsVisible(false);
-					
+
 					Cookies.set('_om_pr',
 						CryptoJS.AES.encrypt(JSON.stringify({
 							id : data?.data?.user?.id, email : formData?.email
@@ -79,7 +82,7 @@ const SignUp = () => {
 							expires: 1, secure: true
 						}
 					);
-					
+
 					router.push(`/signup/two-step-verification`);
 					toast(
 						<Alert
@@ -107,7 +110,7 @@ const SignUp = () => {
 	}
 
 	useEffect(() => { getActiveTermsAndCondition(); }, []);
-	
+
 	return (
 		(<GuestLayout
 			header="Welcome to Oakmont Athletic!"
@@ -118,7 +121,7 @@ const SignUp = () => {
 			<Form validationBehavior="native" onSubmit={onSubmit}>
 				<div className={`w-full ${isFormNext ? 'hidden' : ''}`}>
 					<h1 className='font-bold text-gray-600 mb-4'>Personal Information</h1>
-					
+
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-3'>
 						<Input
 							label="First Name"
@@ -143,7 +146,7 @@ const SignUp = () => {
 							autoComplete="off"
 						/>
 					</div>
-					
+
 					<Input
 						label="Email"
 						type="email"
@@ -159,7 +162,7 @@ const SignUp = () => {
 							return null;
 						}}
 					/>
-					
+
 					<DatePicker
 						label="Date of birth"
 						name="dob"
@@ -177,7 +180,7 @@ const SignUp = () => {
 							return selectedDate > minValidDate ? "You must be at least 18 years old." : null;
 						}}
 					/>
-					
+
 					<Input
 						label="Contact Number"
 						type="text"
@@ -194,7 +197,7 @@ const SignUp = () => {
 				</div>
 				<div className={`w-full ${isFormNext ? '' : 'hidden'}`}>
 					<h1 className='font-bold text-gray-600 mb-4'>User Information</h1>
-					
+
 					<Input
 						label="Create Username"
 						type="text"
@@ -205,7 +208,7 @@ const SignUp = () => {
 						placeholder="e.g sam1234"
 						autoComplete="off"
 					/>
-					
+
 					<PasswordWithIcon
 						className={'mb-3'}
 						name='password'
@@ -219,7 +222,7 @@ const SignUp = () => {
 							if(isFormNext && (value.match(/[^a-z]/gi) || []).length < 1) return "Password must include at least 1 symbol.";
 						}}
 					/>
-					
+
 					<PasswordWithIcon
 						className={'mb-3'}
 						isRequired={isFormNext}
@@ -230,7 +233,7 @@ const SignUp = () => {
 							if(isFormNext && value !== formValues.password) return "Password and confirm password does not match";
 						}}
 					/>
-					
+
 					<Input
 						label="Paste Affilate Code"
 						type="text"
@@ -239,7 +242,7 @@ const SignUp = () => {
 						autoComplete="off"
 					/>
 				</div>
-				
+
 				<div className="flex items-center gap-3 mb-1">
 					<Checkbox
 						isInvalid={isValidTermsAndConditions}
@@ -249,7 +252,7 @@ const SignUp = () => {
 					>Agree to terms and conditions</Checkbox>
 					<FaInfoCircle className="text-lg cursor-pointer" onClick={onOpen}/>
 				</div>
-				
+
 				<Button type="submit" color='primary' className='w-full' isLoading={isFormNext && isApiLoader}>
 					{isFormNext ? isApiLoader ? 'Please wait...' : 'Verify' : 'Next'}
 				</Button>
