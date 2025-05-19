@@ -195,7 +195,6 @@ const PaymentFormExternal = ({clientSecret, planID, planName, planPrice, onClose
                     </div>
                 </Form>
             )}
-
         </Fragment>
     )
 }

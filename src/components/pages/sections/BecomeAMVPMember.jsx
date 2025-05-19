@@ -190,7 +190,7 @@ const BecomeAMVPMemberExternal = ({ isModalOpen, linkPath, contents, isCountryLo
 
                         <p className="text-sm text-gray-600">{"/" + plan.plan_duration}</p>
 
-                        <ul style={{ listStyle: 'circle' }} className="text-left ml-8 flex-grow">
+                        <ul style={{ listStyle: 'circle' }} className="text-left flex-grow">
                             {plan.plan_feature.map((feature) => (
                                 <li key={feature} className="my-2">{feature}</li>
                             ))}
