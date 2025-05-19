@@ -5,6 +5,7 @@ import Image from 'next/image';
 import FooterImage from '../../public/assets/images/footer-logo.png';
 import { Inter } from 'next/font/google';
 import AlertComponent from '@/components/utils/forms/AlertComponent';
+import Link from 'next/link';
 
 const inter = Inter({subsets : ['latin']});
 const GuestLayout = ({
@@ -15,7 +16,9 @@ const GuestLayout = ({
             <section className='guest-layout flex-col justify-center items-center w-full rounded-xl relative'>
                 <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1, }} className='absolute top-0 left-0 w-full h-full rounded-xl'></div>
                 <div className="relative z-10 flex flex-col justify-center items-center" style={{ width: '65%' }}>
-                    <Image src={FooterImage} alt="authentication" className='w-auto h-auto'/>
+                    <Link href="/">
+                        <Image src={FooterImage} alt="Logo" className="w-1/2" />
+                    </Link>
                     <p className='font-urbanist text-center text-white w-3/5 my-5'>Lorem ipsum dolor sit amet consectetur. Quis euismod pellentesque vestibulum ornare eget. Suscipit congue dictum metus facilisis fermentum auctor dictum.</p>
                 </div>
             </section>
