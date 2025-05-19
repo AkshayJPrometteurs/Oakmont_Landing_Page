@@ -1,12 +1,13 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import {Accordion, AccordionItem, Button, Form, Input, Skeleton, Textarea, useDisclosure} from "@heroui/react";
+import {Accordion, AccordionItem, Alert, Button, Form, Input, Skeleton, Textarea, useDisclosure} from "@heroui/react";
 import { IoIosArrowForward } from "react-icons/io";
 import { Inter } from 'next/font/google';
 import Axios from '@/components/utils/Axios';
 import SectionLayout from '@/layouts/SectionLayout';
 import Modals from '@/components/utils/Modals';
 import { useAuthServiceContext } from '@/contexts/AuthServiceProvider';
+import { toast } from 'react-toastify';
 
 const inter = Inter({ subsets : ['latin']});
 const FrequentlyAskQuestions = () => {
@@ -49,12 +50,9 @@ const FrequentlyAskQuestions = () => {
         setLoader(true);
         try {
             const { data } = await Axios.post('/users/contact-us', formData);
-            if(data.status === 200){
-                toast(<Alert color='success' title={data.message} />, {closeButton:false});
-                onClose();
-            }else{
-                toast(<Alert color='danger' title={data.message} />, {closeButton:false});
-            }
+            toast(<Alert color='success' title={data.message} />, {closeButton:false});
+            onClose();
+            setFormData({ first_name: '', last_name: '', mobile_number: '', email: '', message: '' });
         } catch (error) {
             console.log(error);
         } finally { setLoader(false); }
@@ -160,9 +158,14 @@ const FrequentlyAskQuestions = () => {
                             label="Message"
                             name='message'
                             isRequired
-                            errorMessage="Please enter your message"
                             onChange={handleChange}
                             value={formData.message}
+                            validate={(value) => {
+                                if (value === '') return "Please enter your message";
+                                const wordCount = value.trim().split(/\s+/).length;
+                                if (wordCount > 250) return "Message must be 250 words or fewer";
+                                return null;
+                            }}
                         />
                         <Button
                             color="primary"
