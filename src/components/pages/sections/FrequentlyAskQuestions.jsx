@@ -23,6 +23,7 @@ const FrequentlyAskQuestions = () => {
         message: ''
     });
     const [loader, setLoader] = useState(false);
+    const [mobInputError, setMobInputError] = useState('');
 
     const formatOnlyNumber = (value) => { return value.replace(/\D/g, ""); }
     const formatOnlyAlphabetsAndSpace = (value) => { return value.replace(/[^a-zA-Z\s]/g, ""); };
@@ -34,6 +35,7 @@ const FrequentlyAskQuestions = () => {
         name === 'last_name' && (formattedValue = formatOnlyAlphabetsAndSpace(value));
         name === 'mobile_number' && (formattedValue = formatOnlyNumber(value));
         setFormData({...formData,[name]: formattedValue});
+        setMobInputError('');
     };
 
     const getFAQsList = async() => {
@@ -54,7 +56,8 @@ const FrequentlyAskQuestions = () => {
             onClose();
             setFormData({ first_name: '', last_name: '', mobile_number: '', email: '', message: '' });
         } catch (error) {
-            console.log(error);
+            console.log(error?.response?.data?.data?.errors?.mobile_number);
+            setMobInputError(error?.response?.data?.data?.errors?.mobile_number);
         } finally { setLoader(false); }
     }
 
@@ -92,13 +95,13 @@ const FrequentlyAskQuestions = () => {
                <Modals
                     isOpen={isOpen}
                     onOpenChange={onOpenChange}
-                    modalBodyClass={'p-0'}
                     modalHeaderClass={'text-xl'}
                     isDismissable={true}
                     modalHeader="Ask a Question"
                     modalSize={'3xl'}
                 >
-                    <Form className={`${inter.className} p-4`} validationBehavior="native" onSubmit={onSubmit}>
+                    <Form className={`${inter.className}`} validationBehavior="native" onSubmit={onSubmit}>
+                        {Boolean(mobInputError) && <Alert color='danger' className='mb-3' title={mobInputError} />}
                         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-full'>
                             <Input
                                 label="First Name"
