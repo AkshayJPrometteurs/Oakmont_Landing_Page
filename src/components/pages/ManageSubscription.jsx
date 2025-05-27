@@ -77,7 +77,7 @@ const ManageSubscription = () => {
     return (
         <MainPageLayout>
             <section className='p-10 md:px-32 md:py-16'>
-                <h1 className='text-3xl md:text-5xl uppercase tracking-wider leading-[1.3!important] font-base-runner'>
+                <h1 className='text-5xl md:text-7xl uppercase tracking-widest font-dharma-gothic-c-italic font-bold'>
                     {isSubscription ? 'Free' : subscriptionDetails?.plan_interval} Subscription plans
                 </h1>
 

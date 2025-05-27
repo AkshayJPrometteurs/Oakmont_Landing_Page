@@ -15,14 +15,13 @@ export default {
                 background: "var(--background)",
                 foreground: "var(--foreground)",
                 primaryColor : "#321fb7",
-                primary : {
-                    DEFAULT : '#321fb7'
-                }
+                primary : { DEFAULT : '#321fb7' }
             },
             fontFamily: {
                 'dm-sans': ['DM Sans', 'Arial', 'sans-serif'],
                 'base-runner': ['Base Runner', 'sans-serif'],
                 'urbanist': ['Urbanist', 'sans-serif'],
+                'dharma-gothic-c-italic': ['Dharma Gothic C Italic', 'sans-serif'],
             },
         },
     },

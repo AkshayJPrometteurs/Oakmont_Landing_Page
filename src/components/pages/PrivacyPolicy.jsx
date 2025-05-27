@@ -20,7 +20,7 @@ const PrivacyPolicy = () => {
     return (
         <MainPageLayout>
             <section className="max-w-7xl mx-auto px-6">
-                <h1 className="text-3xl md:text-5xl uppercase tracking-wider leading-[1.3!important] text-center font-base-runner my-6">Privacy Policy</h1>
+                <h1 className="text-5xl md:text-7xl uppercase tracking-widest text-center font-dharma-gothic-c-italic font-bold my-6">Privacy Policy</h1>
                 <Divider orientation="horizontal"/>
                 <div className="my-6 font-dm-sans">
                     <div dangerouslySetInnerHTML={{ __html: privacyPolicy }} />
