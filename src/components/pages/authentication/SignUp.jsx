@@ -8,7 +8,6 @@ import Link from 'next/link';
 import Axios from '@/components/utils/Axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import GuestLayout from '@/layouts/GuestLayout';
 import Image from 'next/image';
 import MarketingEmoji from '../../../../public/assets/images/emoji/Marketing.png';
 import CryptoJS from 'crypto-js';
@@ -16,6 +15,10 @@ import Cookies from 'js-cookie';
 import moment from "moment";
 import Modals from "@/components/utils/Modals";
 import { FaInfoCircle } from "react-icons/fa";
+import { Inter } from 'next/font/google';
+import FooterImage from '../../../../public/assets/images/footer-logo.png';
+
+const inter = Inter({ subsets: ['latin'] });
 
 const SignUp = () => {
 	const router = useRouter();
@@ -112,167 +115,180 @@ const SignUp = () => {
 	useEffect(() => { getActiveTermsAndCondition(); }, []);
 
 	return (
-		(<GuestLayout
-			header="Welcome to Oakmont Athletic!"
-			headerIcon={<Image src={MarketingEmoji} height={5} width={25} alt='emoji'/>}
-			headerPara={"Please sign-up to your account and start the adventure"}
-			alertVisibility = {{ description : isApiErrors, type : 'danger', visible : isVisible }}
-		>
-			<Form validationBehavior="native" onSubmit={onSubmit}>
-				<div className={`w-full ${isFormNext ? 'hidden' : ''}`}>
-					<h1 className='font-bold text-gray-600 mb-4'>Personal Information</h1>
+        <section className={`grid grid-cols-1 md:grid-cols-2 items-center gap-4 p-4 h-screen ${inter.className}`}>
+            <section className='guest-layout flex-col justify-center items-center w-full rounded-xl relative'>
+                <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1, }} className='absolute top-0 left-0 w-full h-full rounded-xl'></div>
+                <div className="relative z-10 flex flex-col justify-center items-center">
+                    <Link href="/">
+                        <Image src={FooterImage} alt="Logo" />
+                    </Link>
+                    <p className='font-urbanist text-center text-white w-3/5 my-5'>Lorem ipsum dolor sit amet consectetur. Quis euismod pellentesque vestibulum ornare eget. Suscipit congue dictum metus facilisis fermentum auctor dictum.</p>
+                </div>
+            </section>
+            <section className='w-full p-4'>
+                <h1 className='text-[#262B43E5] text-xl md:text-2xl font-bold flex gap-2 items-center'>Welcome to Oakmont Athletic! <Image src={MarketingEmoji} height={5} width={25} alt='emoji'/></h1>
+                <h1 className='text-gray-500 mt-1 mb-4'>Please sign-up to your account and start the adventure</h1>
 
-					<div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-3'>
-						<Input
-							label="First Name"
-							type="text"
-							name="first_name"
-							isRequired
-							errorMessage="Please enter your first name"
-							placeholder="e.g Sam"
-							value={formValues.first_name}
-							onChange={handleChange}
-							autoComplete="off"
-						/>
-						<Input
-							label="Last Name"
-							type="text"
-							name="last_name"
-							isRequired
-							errorMessage="Please enter your last name"
-							placeholder="e.g Morgan"
-							value={formValues.last_name}
-							onChange={handleChange}
-							autoComplete="off"
-						/>
-					</div>
+                {Boolean(isApiErrors) && (
+                    <AlertComponent type="danger" variant={'flat'} description={isApiErrors} isVisible={isVisible} />
+                )}
 
-					<Input
-						label="Email"
-						type="email"
-						name="email"
-						className='mb-3'
-						isRequired
-						placeholder="e.g sam@example.com"
-						autoComplete="off"
-						validate={(value) => {
-							if (value === '') return "Please enter your email";
-							const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9-]+\.[A-Z]{2,}$/i;
-							if (!emailRegex.test(value)) return "Invalid email address";
-							return null;
-						}}
-					/>
+                <Form validationBehavior="native" onSubmit={onSubmit}>
+                    <div className={`w-full ${isFormNext ? 'hidden' : ''}`}>
+                        <h1 className='font-bold text-gray-600 mb-4'>Personal Information</h1>
 
-					<DatePicker
-						label="Date of birth"
-						name="dob"
-						className="mb-2.5"
-						isRequired
-						maxValue={today(getLocalTimeZone())}
-						errorMessage={(value) => {
-							return value.isInvalid && !value.validationDetails.customError ?
-								"Please enter your date of birth" :
-								value.validationErrors[0];
-						}}
-						validate={(value) => {
-							const selectedDate = moment(value).toDate();
-							const minValidDate = moment(today(getLocalTimeZone())).subtract(18, 'years').toDate();
-							return selectedDate > minValidDate ? "You must be at least 18 years old." : null;
-						}}
-					/>
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-3'>
+                            <Input
+                                label="First Name"
+                                type="text"
+                                name="first_name"
+                                isRequired
+                                errorMessage="Please enter your first name"
+                                placeholder="e.g Sam"
+                                value={formValues.first_name}
+                                onChange={handleChange}
+                                autoComplete="off"
+                            />
+                            <Input
+                                label="Last Name"
+                                type="text"
+                                name="last_name"
+                                isRequired
+                                errorMessage="Please enter your last name"
+                                placeholder="e.g Morgan"
+                                value={formValues.last_name}
+                                onChange={handleChange}
+                                autoComplete="off"
+                            />
+                        </div>
 
-					<Input
-						label="Contact Number"
-						type="text"
-						name="contact_number"
-						className='mb-2'
-						isRequired
-						errorMessage="Please enter your contact no."
-						placeholder="e.g 7865646656"
-						value={formValues.contact_number}
-						onChange={handleChange}
-						autoComplete="off"
-						maxLength={10}
-					/>
-				</div>
-				<div className={`w-full ${isFormNext ? '' : 'hidden'}`}>
-					<h1 className='font-bold text-gray-600 mb-4'>User Information</h1>
+                        <Input
+                            label="Email"
+                            type="email"
+                            name="email"
+                            className='mb-3'
+                            isRequired
+                            placeholder="e.g sam@example.com"
+                            autoComplete="off"
+                            validate={(value) => {
+                                if (value === '') return "Please enter your email";
+                                const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9-]+\.[A-Z]{2,}$/i;
+                                if (!emailRegex.test(value)) return "Invalid email address";
+                                return null;
+                            }}
+                        />
 
-					<Input
-						label="Create Username"
-						type="text"
-						name="username"
-						className='mb-3'
-						isRequired={isFormNext}
-						errorMessage="Please create your username"
-						placeholder="e.g sam1234"
-						autoComplete="off"
-					/>
+                        <DatePicker
+                            label="Date of birth"
+                            name="dob"
+                            className="mb-2.5"
+                            isRequired
+                            maxValue={today(getLocalTimeZone())}
+                            errorMessage={(value) => {
+                                return value.isInvalid && !value.validationDetails.customError ?
+                                    "Please enter your date of birth" :
+                                    value.validationErrors[0];
+                            }}
+                            validate={(value) => {
+                                const selectedDate = moment(value).toDate();
+                                const minValidDate = moment(today(getLocalTimeZone())).subtract(18, 'years').toDate();
+                                return selectedDate > minValidDate ? "You must be at least 18 years old." : null;
+                            }}
+                        />
 
-					<PasswordWithIcon
-						className={'mb-3'}
-						name='password'
-						isRequired={isFormNext}
-						onChange={handleChange}
-						label="Password"
-						validate={(value) => {
-							if(isFormNext && value === '') return "Please enter and create your password";
-							if(isFormNext && value.length < 6) return "Password must be 6 characters or more.";
-							if(isFormNext && (value.match(/[A-Z]/g) || []).length < 1) return "Password must include at least 1 upper case letter";
-							if(isFormNext && (value.match(/[^a-z]/gi) || []).length < 1) return "Password must include at least 1 symbol.";
-						}}
-					/>
+                        <Input
+                            label="Contact Number"
+                            type="text"
+                            name="contact_number"
+                            className='mb-2'
+                            isRequired
+                            errorMessage="Please enter your contact no."
+                            placeholder="e.g 7865646656"
+                            value={formValues.contact_number}
+                            onChange={handleChange}
+                            autoComplete="off"
+                            maxLength={10}
+                        />
+                    </div>
+                    <div className={`w-full ${isFormNext ? '' : 'hidden'}`}>
+                        <h1 className='font-bold text-gray-600 mb-4'>User Information</h1>
 
-					<PasswordWithIcon
-						className={'mb-3'}
-						isRequired={isFormNext}
-						onChange={handleChange}
-						label="Confirm Password"
-						validate={(value) => {
-							if(isFormNext && value === '') return "Please enter your confirm password";
-							if(isFormNext && value !== formValues.password) return "Password and confirm password does not match";
-						}}
-					/>
+                        <Input
+                            label="Create Username"
+                            type="text"
+                            name="username"
+                            className='mb-3'
+                            isRequired={isFormNext}
+                            errorMessage="Please create your username"
+                            placeholder="e.g sam1234"
+                            autoComplete="off"
+                        />
 
-					<Input
-						label="Paste Affilate Code"
-						type="text"
-						name="affiliate_referral_code"
-						className='mb-4'
-						autoComplete="off"
-					/>
-				</div>
+                        <PasswordWithIcon
+                            className={'mb-3'}
+                            name='password'
+                            isRequired={isFormNext}
+                            onChange={handleChange}
+                            label="Password"
+                            validate={(value) => {
+                                if(isFormNext && value === '') return "Please enter and create your password";
+                                if(isFormNext && value.length < 6) return "Password must be 6 characters or more.";
+                                if(isFormNext && (value.match(/[A-Z]/g) || []).length < 1) return "Password must include at least 1 upper case letter";
+                                if(isFormNext && (value.match(/[^a-z]/gi) || []).length < 1) return "Password must include at least 1 symbol.";
+                            }}
+                        />
 
-				<div className="flex items-center gap-3 mb-1">
-					<Checkbox
-						isInvalid={isValidTermsAndConditions}
-						className='text-sm'
-						name='terms_and_condition'
-						onChange={(e) => setIsValidTermsAndConditions(!e.target.checked)}
-					>Agree to terms and conditions</Checkbox>
-					<FaInfoCircle className="text-lg cursor-pointer" onClick={onOpen}/>
-				</div>
+                        <PasswordWithIcon
+                            className={'mb-3'}
+                            isRequired={isFormNext}
+                            onChange={handleChange}
+                            label="Confirm Password"
+                            validate={(value) => {
+                                if(isFormNext && value === '') return "Please enter your confirm password";
+                                if(isFormNext && value !== formValues.password) return "Password and confirm password does not match";
+                            }}
+                        />
 
-				<Button type="submit" color='primary' className='w-full' isLoading={isFormNext && isApiLoader}>
-					{isFormNext ? isApiLoader ? 'Please wait...' : 'Verify' : 'Next'}
-				</Button>
-			</Form>
-			<div className='mt-3 flex justify-center items-center gap-2'>
-				<IoIosArrowBack className='text-primaryColor'/>
-				<Link href="/login" className='text-primaryColor'>Back to login</Link>
-			</div>
-			<Modals
-				isOpen={isOpen}
-				onOpenChange={onOpenChange}
-				modalSize='4xl'
-				modalHeader='Terms and Conditions'
-				modalHeaderClass="border-b border-gray-200"
-				hideCloseButton={false}
-				modalBodyClass="p-3"
-			>
-				<div className="h-[32rem] overflow-y-auto" dangerouslySetInnerHTML={{ __html: activeTermsAndCondition }}></div>
-			</Modals>
-		</GuestLayout>)
+                        <Input
+                            label="Paste Affilate Code"
+                            type="text"
+                            name="affiliate_referral_code"
+                            className='mb-4'
+                            autoComplete="off"
+                        />
+                    </div>
+
+                    <div className="flex items-center gap-3 mb-1">
+                        <Checkbox
+                            isInvalid={isValidTermsAndConditions}
+                            className='text-sm'
+                            name='terms_and_condition'
+                            onChange={(e) => setIsValidTermsAndConditions(!e.target.checked)}
+                        >Agree to terms and conditions</Checkbox>
+                        <FaInfoCircle className="text-lg cursor-pointer" onClick={onOpen}/>
+                    </div>
+
+                    <Button type="submit" color='primary' className='w-full' isLoading={isFormNext && isApiLoader}>
+                        {isFormNext ? isApiLoader ? 'Please wait...' : 'Verify' : 'Next'}
+                    </Button>
+                </Form>
+                <div className='mt-3 flex justify-center items-center gap-2'>
+                    <IoIosArrowBack className='text-primaryColor'/>
+                    <Link href="/login" className='text-primaryColor'>Back to login</Link>
+                </div>
+                <Modals
+                    isOpen={isOpen}
+                    onOpenChange={onOpenChange}
+                    modalSize='4xl'
+                    modalHeader='Terms and Conditions'
+                    modalHeaderClass="border-b border-gray-200"
+                    hideCloseButton={false}
+                    modalBodyClass="p-3"
+                >
+                    <div className="h-[32rem] overflow-y-auto" dangerouslySetInnerHTML={{ __html: activeTermsAndCondition }}></div>
+                </Modals>
+            </section>
+        </section>
 	);
 }
 

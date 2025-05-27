@@ -7,7 +7,7 @@ const BannerContents = () => {
         <div style={{ backgroundImage: 'url(/assets/images/banner-one.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', width: '100%' }} id='home-section'>
             <div className="md:h-[630px] p-10 md:px-32 md:py-16 flex items-center">
                 <div className="w-full md:w-[50%]">
-                    <h1 className="text-3xl md:text-5xl uppercase tracking-wider leading-[1.3!important] text-white" style={{ fontFamily: 'Base Runner' }}>
+                    <h1 className="text-5xl md:text-8xl uppercase tracking-widest text-white font-dharma-gothic-c-italic font-bold">
                         Become the ultimate punter faster and easier than ever before.
                     </h1>
                     <p className="text-gray-300 mt-8 text-lg md:text-xl w-full md:w-[73%] font-extralight font-urbanist">

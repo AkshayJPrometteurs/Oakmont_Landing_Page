@@ -8,6 +8,11 @@
 }
 
 @font-face {
+    font-family: "Dharma Gothic C Italic";
+    src: url("/assets/fonts/DharmaGothicC-Regular-Italic.woff2") format("woff2"), url("/assets/fonts/DharmaGothicC-Regular-Italic.woff") format("woff");
+}
+
+@font-face {
     font-family: "Urbanist";
     src: url("/assets/fonts/Urbanist-Regular.ttf") format("truetype");
 }
@@ -24,6 +29,15 @@ html { scroll-behavior: smooth; }
 .Toastify__toast{padding: 0!important;border-radius: 12px!important;}
 
 [data-input-otp-container="true"] { width: 100%; }
+
+.guest-layout-old{
+    background-image: url('/assets/images/authentication-old.jpg');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height : 100%;
+    display: flex;
+}
 
 .guest-layout{
     background-image: url('/assets/images/authentication.jpg');
@@ -57,7 +71,7 @@ ul {
 }
 
 @media screen and (max-width:767px) {
-    .guest-layout{
+    .guest-layout-old,.guest-layout{
         display: none;
     }
 }

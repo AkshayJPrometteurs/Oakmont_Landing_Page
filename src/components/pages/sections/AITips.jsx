@@ -19,7 +19,7 @@ const AITips = () => {
                 </h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
                     <div>
-                        <h1 className="uppercase tracking-wider font-base-runner text-xl md:text-2xl">Positive Expected Value (+EV) Tips</h1>
+                        <h1 className="uppercase tracking-widest font-bold font-dharma-gothic-c-italic text-3xl md:text-5xl">Positive Expected Value (+EV) Tips</h1>
                         <h1 className={`my-5 ${inter.className}`}>
                             These tips are designed for long-term profitability. The AI hunts for bets where the
                             odds offered by the sportsbook are higher than the actual likelihood of the outcome,
@@ -28,7 +28,7 @@ const AITips = () => {
                         </h1>
                     </div>
                     <div>
-                        <h1 className="uppercase tracking-wider font-base-runner text-xl md:text-2xl">Arbitrage Tips (ARB):</h1>
+                        <h1 className="uppercase tracking-widest font-bold font-dharma-gothic-c-italic text-3xl md:text-5xl">Arbitrage Tips (ARB):</h1>
                         <h1 className={`my-5 ${inter.className}`}>
                             These are risk-free opportunities where the AI finds differing odds across
                             sportsbooks, allowing you to cover all possible outcomes for a guaranteed profit.
@@ -40,7 +40,7 @@ const AITips = () => {
                 <div>
                     <div className={`flex flex-col md:flex-row gap-5 bg-[#333333] p-5 rounded-lg ${inter.className}`}>
                         <div className="flex-1">
-                            <h1 className="uppercase tracking-wider font-base-runner text-2xl md:text-3xl mb-4">+EV</h1>
+                            <h1 className="uppercase tracking-widest font-bold font-dharma-gothic-c-italic text-3xl md:text-5xl mb-4">+EV</h1>
                             <div className="border border-white px-5 py-3 rounded-xl flex items-center justify-between mb-6">
                                 <div><h1 className="text-xl md:text-2xl">50</h1><h1>Tips sent</h1></div>
                                 <div className="p-3 bg-primaryColor rounded-full"><FaArrowUp /></div>
@@ -62,7 +62,7 @@ const AITips = () => {
                         <Divider className="bg-[#525252] border h-auto block md:hidden"/>
                         <Divider className="bg-[#525252] border h-auto hidden md:block" orientation="vertical"/>
                         <div className="flex-1">
-                            <h1 className="uppercase tracking-wider font-base-runner text-2xl md:text-3xl mb-4">ARB</h1>
+                            <h1 className="uppercase tracking-widest font-bold font-dharma-gothic-c-italic text-3xl md:text-5xl mb-4">ARB</h1>
                             <div className="border border-white px-5 py-3 rounded-xl flex items-center justify-between mb-6">
                                 <div><h1 className="text-xl md:text-2xl">60</h1><h1>Tips sent</h1></div>
                                 <div className="p-3 bg-primaryColor rounded-full"><FaArrowUp /></div>
