@@ -146,10 +146,14 @@ const BecomeAMVPMemberExternal = ({ isModalOpen, linkPath, contents, isCountryLo
     const handleApplyDiscountCode = async() => {
         try {
             const { data } = await Axios.get(`discounts/validate/${discountCode}`);
+            if(data?.data?.is_valid){
+                setDiscountCodeInputColor("success");
+                setApplyDiscountCode(false);
+                setDiscountData(data?.data);
+            }else{
+                setDiscountCodeInputColor("danger");
+            }
             setDiscountCodeMessage(data?.message);
-            setDiscountCodeInputColor("success");
-            setApplyDiscountCode(false);
-            setDiscountData(data?.data);
         }catch (error) {
             setDiscountCodeInputColor("danger");
             setDiscountCodeMessage(error?.response?.data?.message)
@@ -383,8 +387,8 @@ const BecomeAMVPMemberExternal = ({ isModalOpen, linkPath, contents, isCountryLo
                                         />
                                         {applyDiscountCode && <Button color="primary" onPress={handleApplyDiscountCode}>Apply</Button>}
                                     </div>
-                                    {discountCodeMessage && (
-                                        <div className={`text-tiny ${discountCodeInputColor === 'success' ? 'text-success' : 'text-danger'} ml-2`}>{discountCodeInputColor === 'success' ? 'Applied discount code!' : 'Invalid discount code'}</div>
+                                    {Boolean(discountCodeMessage) && (
+                                        <div className={`text-tiny ${discountCodeInputColor === 'success' ? 'text-success' : 'text-danger'} ml-2`}>{discountCodeMessage}</div>
                                     )}
                                 </div>
                             </div>
