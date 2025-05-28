@@ -13,9 +13,9 @@ const GuestLayout = ({
 }) => {
     return (
         <section className={`grid grid-cols-1 md:grid-cols-2 items-center gap-4 p-4 h-screen ${inter.className}`}>
-            <section className='guest-layout-old flex-col justify-center items-center w-full rounded-xl relative'>
+            <section className='guest-layout flex-col justify-center items-center w-full rounded-xl relative'>
                 <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 1, }} className='absolute top-0 left-0 w-full h-full rounded-xl'></div>
-                <div className="relative z-10 flex flex-col justify-center items-center">
+                <div className="relative z-10 flex flex-col justify-center items-center" style={{ width: '60%' }}>
                     <Link href="/">
                         <Image src={FooterImage} alt="Logo" />
                     </Link>
