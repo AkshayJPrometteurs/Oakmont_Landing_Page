@@ -71,7 +71,7 @@ const Login = () => {
     },[])
 
     return (
-        (<GuestLayout
+        <GuestLayout
             header={'Welcome to Oakmont Athletic!'}
             headerIcon={<Image src={MarketingEmoji} height={5} width={25} alt='emoji'/>}
             headerPara={'Please sign-in to your account and start the adventure'}
@@ -104,7 +104,7 @@ const Login = () => {
                 <h1 className='text-gray-500'>Don't have account?</h1>
                 <Link href={'/signup'} className='text-primaryColor'>Sign Up</Link>
             </div>
-        </GuestLayout>)
+        </GuestLayout>
     );
 }
 
