@@ -26,6 +26,7 @@ export default function Header() {
     const { isOpen: isOpenAppDrawer, onOpen: onOpenAppDrawer, onOpenChange: onOpenChangeAppDrawer } = useDisclosure();
     const { isOpen: isOpenLogOut, onOpen: onOpenLogOut, onOpenChange: onOpenChangeLogOut, onClose: onCloseLogOut } = useDisclosure();
     const { isAuthenticated, user } = useAuthServiceContext();
+
     const [logOutLoader, setLogOutLoader] = useState(false);
 
     const handleLogOut = async() => {
@@ -74,7 +75,7 @@ export default function Header() {
                                 <DropdownItem key="profile" className="gap-2">
                                     <Avatar
                                         className="w-16 h-16 mx-auto mb-3"
-                                        src="https://i.pravatar.cc/150?u=a04258114e29026708c"
+                                        src={user?.profile_url || "https://i.pravatar.cc/150?u=a04258114e29026708c"}
                                     />
                                     <p className="font-bold text-primaryColor text-center text-base">{user && user.username}</p>
                                     <p className="text-center text-base text-gray-600">{user && user.email}</p>
