@@ -10,10 +10,12 @@ import Axios from "@/components/utils/Axios";
 
 const inter = Inter({ subsets: ['latin'] });
 const AITips = () => {
-    const [data, setData] = useState({});
+    const [ev, setEv] = useState({});
+    const [arbitrage, setArbitrage] = useState({});
     const getData = async () => {
-        const { data } = await Axios.get("/statistics/ev-arb-statistics-landing-page");
-        setData(data?.data);
+        const response = await Axios.get("/statistics/ev-arb-statistics-landing-page");
+        setEv(response?.data?.data?.ev);
+        setArbitrage(response?.data?.data?.arbitrage);
     };
     useEffect(() => { getData(); }, []);
     return (
@@ -49,14 +51,14 @@ const AITips = () => {
                         <div className="flex-1">
                             <h1 className="uppercase tracking-widest font-bold font-dharma-gothic-c-italic text-3xl md:text-5xl mb-4">+EV</h1>
                             <div className="border border-white px-5 py-3 rounded-xl flex items-center justify-between mb-6">
-                                <div><h1 className="text-xl md:text-2xl">{data?.data?.ev?.tips_sent}</h1><h1>Tips sent</h1></div>
+                                <div><h1 className="text-xl md:text-2xl">{ev?.tips_sent}</h1><h1>Tips sent</h1></div>
                                 <div className="p-3 bg-primaryColor rounded-full"><FaArrowUp /></div>
                             </div>
                             <div className="grid grid-col-1 md:grid-cols-2 items-center gap-6 md:gap-8">
                                 <div className="border border-white px-5 py-3 rounded-xl">
                                     <div className="flex items-end">
-                                        <h1 className="text-xl md:text-2xl">{data?.data?.ev?.arrow === "up" ? "+" : ""}{data?.data?.ev?.units_win}</h1>
-                                        {data?.data?.ev?.arrow === 'up'
+                                        <h1 className="text-xl md:text-2xl">{ev?.arrow === "up" ? "+" : ""}{ev?.units_win}</h1>
+                                        {ev?.arrow === 'up'
                                             ? <IoMdArrowDropup color="#00D95F" size={'2rem'} className="-ml-1.5 -mb-1.5"/>
                                             : <IoMdArrowDropdown color="#FE3434" size={'2rem'} className="-ml-1.5 -mb-1.5"/>
                                         }
@@ -64,7 +66,7 @@ const AITips = () => {
                                     <h1>Units Win</h1>
                                 </div>
                                 <div className="border border-white px-5 py-3 rounded-xl">
-                                    <h1 className="text-xl md:text-2xl">{data?.data?.ev?.win_percentage}%</h1>
+                                    <h1 className="text-xl md:text-2xl">{ev?.win_percentage}%</h1>
                                     <h1>Win Percentage</h1>
                                 </div>
                             </div>
@@ -74,17 +76,17 @@ const AITips = () => {
                         <div className="flex-1">
                             <h1 className="uppercase tracking-widest font-bold font-dharma-gothic-c-italic text-3xl md:text-5xl mb-4">ARB</h1>
                             <div className="border border-white px-5 py-3 rounded-xl flex items-center justify-between mb-6">
-                                <div><h1 className="text-xl md:text-2xl">{data?.data?.arbitrage?.tips_sent}</h1><h1>Tips sent</h1></div>
+                                <div><h1 className="text-xl md:text-2xl">{arbitrage?.tips_sent}</h1><h1>Tips sent</h1></div>
                                 <div className="p-3 bg-primaryColor rounded-full"><FaArrowUp /></div>
                             </div>
                             <div className="border border-white px-5 py-3 rounded-xl flex items-center justify-between mb-6">
                                 <div>
                                     <div className="flex items-end">
                                         <h1 className="text-xl md:text-2xl">
-                                            {data?.data?.arbitrage?.units_win > 0 ? "+" : ""}
-                                            {data?.data?.arbitrage?.units_win}
+                                            {arbitrage?.units_win > 0 ? "+" : ""}
+                                            {arbitrage?.units_win}
                                         </h1>
-                                        {data?.data?.arbitrage?.units_win > 0 ? (
+                                        {arbitrage?.units_win > 0 ? (
                                             <IoMdArrowDropup color="#00D95F" size="2rem" className="-ml-1.5 -mb-1.5" />
                                         ) : (
                                             <IoMdArrowDropdown color="#FE3434" size="2rem" className="-ml-1.5 -mb-1.5" />
