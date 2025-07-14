@@ -39,6 +39,11 @@ const SignUp = () => {
 	const formatOnlyNumber = (value) => { return value.replace(/\D/g, ""); }
 	const formatOnlyAlphabetsAndSpace = (value) => { return value.replace(/[^a-zA-Z\s]/g, ""); };
 
+	// Utility function to check if value contains only spaces or is empty
+	const isValidInput = (value) => {
+		return value && value.trim().length > 0;
+	};
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		let formattedValue = value;
@@ -50,20 +55,12 @@ const SignUp = () => {
 	const onSubmit = async(e) => {
 		e.preventDefault();
 		const formData = Object.fromEntries(new FormData(e.currentTarget));
-
-		if(formData.terms_and_condition === ''){
-			setIsFormNext(true);
-		}else{
-            setIsValidTermsAndConditions(true);
-        }
+		formData.terms_and_condition === '' ? setIsFormNext(true) : setIsValidTermsAndConditions(true);
 
 		const allFilled = Object.entries(formData).every(([key, value]) => {
-            console.log(key, value)
 			if (key === 'affiliate_referral_code' || key === 'terms_and_condition') return true;
-			return value.trim() !== '';
+			return isValidInput(value);
 		});
-
-        console.log(allFilled)
 
 		if (allFilled) {
 			setIsApiLoader(true);
@@ -134,22 +131,30 @@ const SignUp = () => {
                             type="text"
                             name="first_name"
                             isRequired
-                            errorMessage="Please enter your first name"
                             placeholder="e.g Sam"
                             value={formValues.first_name}
                             onChange={handleChange}
                             autoComplete="off"
+                            validate={(value) => {
+                                if (!value || value.trim() === '') return "Please enter your first name";
+                                if (value.trim().length === 0) return "First name cannot contain only spaces";
+                                return null;
+                            }}
                         />
                         <Input
                             label="Last Name"
                             type="text"
                             name="last_name"
                             isRequired
-                            errorMessage="Please enter your last name"
                             placeholder="e.g Morgan"
                             value={formValues.last_name}
                             onChange={handleChange}
                             autoComplete="off"
+                            validate={(value) => {
+                                if (!value || value.trim() === '') return "Please enter your last name";
+                                if (value.trim().length === 0) return "Last name cannot contain only spaces";
+                                return null;
+                            }}
                         />
                     </div>
 
@@ -162,9 +167,10 @@ const SignUp = () => {
                         placeholder="e.g sam@example.com"
                         autoComplete="off"
                         validate={(value) => {
-                            if (value === '') return "Please enter your email";
+                            if (!value || value.trim() === '') return "Please enter your email";
+                            if (value.trim().length === 0) return "Email cannot contain only spaces";
                             const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9-]+\.[A-Z]{2,}$/i;
-                            if (!emailRegex.test(value)) return "Invalid email address";
+                            if (!emailRegex.test(value.trim())) return "Invalid email address";
                             return null;
                         }}
                     />
@@ -193,12 +199,17 @@ const SignUp = () => {
                         name="contact_number"
                         className='mb-2'
                         isRequired
-                        errorMessage="Please enter your contact no."
                         placeholder="e.g 7865646656"
                         value={formValues.contact_number}
                         onChange={handleChange}
                         autoComplete="off"
                         maxLength={10}
+                        validate={(value) => {
+                            if (!value || value.trim() === '') return "Please enter your contact no.";
+                            if (value.trim().length === 0) return "Contact number cannot contain only spaces";
+                            if (value.trim().length < 10) return "Contact number must be 10 digits";
+                            return null;
+                        }}
                     />
                 </div>
                 <div className={`w-full ${isFormNext ? '' : 'hidden'}`}>
@@ -210,9 +221,13 @@ const SignUp = () => {
                         name="username"
                         className='mb-3'
                         isRequired={isFormNext}
-                        errorMessage="Please create your username"
                         placeholder="e.g sam1234"
                         autoComplete="off"
+                        validate={(value) => {
+                            if (isFormNext && (!value || value.trim() === '')) return "Please create your username";
+                            if (isFormNext && value.trim().length === 0) return "Username cannot contain only spaces";
+                            return null;
+                        }}
                     />
 
                     <PasswordWithIcon
@@ -222,8 +237,9 @@ const SignUp = () => {
                         onChange={handleChange}
                         label="Password"
                         validate={(value) => {
-                            if(isFormNext && value === '') return "Please enter and create your password";
-                            if(isFormNext && value.length < 6) return "Password must be 6 characters or more.";
+                            if(isFormNext && (!value || value.trim() === '')) return "Please enter and create your password";
+                            if(isFormNext && value.trim().length === 0) return "Password cannot contain only spaces";
+                            if(isFormNext && value.trim().length < 8) return "Password must be 8 characters or more.";
                             if(isFormNext && (value.match(/[A-Z]/g) || []).length < 1) return "Password must include at least 1 upper case letter";
                             if(isFormNext && (value.match(/[^a-z]/gi) || []).length < 1) return "Password must include at least 1 symbol.";
                         }}
@@ -235,13 +251,14 @@ const SignUp = () => {
                         onChange={handleChange}
                         label="Confirm Password"
                         validate={(value) => {
-                            if(isFormNext && value === '') return "Please enter your confirm password";
+                            if(isFormNext && (!value || value.trim() === '')) return "Please enter your confirm password";
+                            if(isFormNext && value.trim().length === 0) return "Confirm password cannot contain only spaces";
                             if(isFormNext && value !== formValues.password) return "Password and confirm password does not match";
                         }}
                     />
 
                     <Input
-                        label="Paste Affilate Code"
+                        label="Paste Affiliate Code"
                         type="text"
                         name="affiliate_referral_code"
                         className='mb-4'
@@ -276,7 +293,10 @@ const SignUp = () => {
                 hideCloseButton={false}
                 modalBodyClass="p-3"
             >
-                <div className="h-[32rem] overflow-y-auto" dangerouslySetInnerHTML={{ __html: activeTermsAndCondition }}></div>
+                <div
+                    className="h-[32rem] overflow-y-auto"
+                    dangerouslySetInnerHTML={{ __html: activeTermsAndCondition }}
+                />
             </Modals>
         </GuestLayout>
 	);

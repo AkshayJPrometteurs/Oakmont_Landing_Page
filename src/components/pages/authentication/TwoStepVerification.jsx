@@ -25,7 +25,17 @@ const TwoStepVerification = ({submitURL, resendURL, afterSubmitRedirect, pageNam
 
     function obfuscateEmail(email) {
         const [localPart, domain] = email.split("@");
-        const hiddenLocalPart = localPart[0] + "*".repeat(localPart.length - 5) + localPart[localPart.length - 1];
+
+        // Handle edge cases for very short local parts
+        if (localPart.length <= 2) {
+            // For 1-2 character local parts, show first character + asterisks
+            const asterisks = "*".repeat(Math.max(1, localPart.length));
+            return `${localPart[0]}${asterisks}@${domain}`;
+        }
+
+        // For longer local parts, show first and last character with asterisks in between
+        const asterisksCount = Math.max(1, localPart.length - 2);
+        const hiddenLocalPart = localPart[0] + "*".repeat(asterisksCount) + localPart[localPart.length - 1];
         return `${hiddenLocalPart}@${domain}`;
     }
 
@@ -115,14 +125,38 @@ const TwoStepVerification = ({submitURL, resendURL, afterSubmitRedirect, pageNam
             <Form validationBehavior="native" onSubmit={onSubmit}>
                 <h1 className="text-default-500 text-small">Type your 6 digit security code</h1>
 
-                <InputOtp length={6} isRequired errorMessage="Please enter security code" classNames={{ segment : 'w-full', segmentWrapper: 'w-full gap-x-3' }} variant='bordered' name='code' size='lg' fullWidth/>
+                <InputOtp
+                    length={6}
+                    isRequired
+                    errorMessage="Please enter security code"
+                    classNames={{ segment : 'w-full', segmentWrapper: 'w-full gap-x-3' }}
+                    variant='bordered'
+                    name='code'
+                    size='lg'
+                    fullWidth
+                />
 
-                <ButtonComponent type="submit" color='primary' isLoading={isApiLoader} text="Verify"/>
+                <ButtonComponent
+                    type="submit"
+                    color='primary'
+                    isLoading={isApiLoader}
+                    text="Verify"
+                    className='w-full'
+                />
             </Form>
             <div className='flex justify-center gap-2 items-center mt-4'>
                 <h1 className='text-gray-500 text-center'>{`Didn't get the mail?`}</h1>
 
-                <Button type='button' size='small' color="primary" variant="light" className='text-base' onPress={handleResendCode} isLoading={isResendCodeLoader} isDisabled={resendTime > 0}>
+                <Button
+                    type='button'
+                    size='small'
+                    color="primary"
+                    variant="light"
+                    className='text-base'
+                    onPress={handleResendCode}
+                    isLoading={isResendCodeLoader}
+                    isDisabled={resendTime > 0}
+                >
                     {!isResendCodeLoader && resendTime > 0 ? `${resendTime} secs` : 'Resend'}
                 </Button>
             </div>
